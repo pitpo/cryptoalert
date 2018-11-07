@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0BDADCAC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlert.Nunit", "Tests\CryptoAlert.Nunit\CryptoAlert.Nunit.csproj", "{7270EB92-7751-47DC-BA16-D124EA248D17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAlertCore", "CryptoAlertCore\CryptoAlertCore.csproj", "{111C82A3-7BCE-406F-AD4A-7D72251AF45F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlertCore", "CryptoAlertCore\CryptoAlertCore.csproj", "{111C82A3-7BCE-406F-AD4A-7D72251AF45F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAlertConsoleApp", "CryptoAlertConsoleApp\CryptoAlertConsoleApp.csproj", "{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{111C82A3-7BCE-406F-AD4A-7D72251AF45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{111C82A3-7BCE-406F-AD4A-7D72251AF45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{111C82A3-7BCE-406F-AD4A-7D72251AF45F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
