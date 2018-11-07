@@ -9,3 +9,5 @@
 /Source/CryptoAlert/.vscode/*
 /Source/CryptoAlert/CryptoAlert/obj/*
 /Source/CryptoAlert/Tests/CryptoAlert.Nunit/obj/*
+/Source/CryptoAlert/CryptoAlertCore/bin/Debug/netcoreapp2.1
+/Source/CryptoAlert/CryptoAlertCore/obj
