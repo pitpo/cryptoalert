@@ -3,3 +3,5 @@
 ################################################################################
 
 /Source/CryptoAlert/.vs/CryptoAlert/v15/Server/sqlite3
+/Source/CryptoAlert/Tests/CryptoAlert.Nunit/bin/Debug
+/Source/CryptoAlert/.vs/CryptoAlert/DesignTimeBuild
