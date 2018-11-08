@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CryptoAlert.Models;
+using CryptoAlertCore.CryptoInformation.DTO;
+using System.Net.Http;
 
 namespace CryptoAlert.Controllers
 {
@@ -15,9 +17,13 @@ namespace CryptoAlert.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> AboutAsync()
         {
-            ViewData["Message"] = "Your application description page.";
+            var httpClient = new HttpClient();
+            var content = await httpClient.GetStringAsync("https://www.cryptocompare.com/api/data/coinlist/");
+
+            Welcome w = Welcome.FromJson(content);
+            ViewData["Message"] = w.ToString();
 
             return View();
         }

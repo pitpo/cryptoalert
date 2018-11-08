@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CryptoAlertCore.Configuration;
 using CryptoAlertCore.CryptoInformation.DTO;
+using CryptoAlertCore.CryptoInformation.UrlProviders;
 
 namespace CryptoAlertConsoleApp
 {
@@ -10,26 +12,27 @@ namespace CryptoAlertConsoleApp
 
         public static async Task<Welcome> GetAsync(string uri)
         {
+            Console.WriteLine("Started GetAsync");
             var httpClient = new HttpClient();
-            try
-            {
-                var content = await httpClient.GetStringAsync(uri);
-//                var s = await httpClient.GetAsync(uri);
-//                Console.WriteLine(s.Content);
-//                return new Welcome();
+            Console.WriteLine("Started GetStringAsync");
+            string content = await httpClient.GetStringAsync(uri);
+            Console.WriteLine("Ended GetStringAsync");
                 return await Task.Run(() => Welcome.FromJson(content));
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+        }
+
+        private static async Task Start(){
+            Welcome we = await GetAsync("https://min-api.cryptocompare.com/data/all/coinlist");
+            Console.WriteLine(we);
         }
 
         static void Main(string[] args)
         {
-           var obj = GetAsync("https://www.cryptocompare.com/api/data/coinlist/");
+
+            //Start().Wait();
+            ICryptoUrlProvider cryptoUrlProvider = new CryptoUrlProvider(new CryptoAlertConfiguration());
+            Console.WriteLine(cryptoUrlProvider.ListOfAllCryptocurriencesUrl);
+   
             Console.Read();
         }
     }

@@ -1,10 +1,18 @@
 ﻿using System;
+using CryptoAlertCore.Configuration;
+
 namespace CryptoAlertCore.CryptoInformation.UrlProviders
 {
-    public class CryptoUrlProvider
+    public class CryptoUrlProvider : ICryptoUrlProvider
     {
-        public CryptoUrlProvider()
+
+        private readonly ICryptoAlertConfiguration _cryptoAlertConfiguration;
+       
+        public CryptoUrlProvider(ICryptoAlertConfiguration cryptoAlertConfiguration)
         {
+            _cryptoAlertConfiguration = cryptoAlertConfiguration;
         }
+
+        public string ListOfAllCryptocurriencesUrl => _cryptoAlertConfiguration.NewCryptoApiUrl + "all/coinlist";
     }
 }
