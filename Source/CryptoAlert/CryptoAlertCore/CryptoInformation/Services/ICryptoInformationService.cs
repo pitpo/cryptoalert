@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using CryptoAlertCore.CryptoInformation.DTO;
+
 namespace CryptoAlertCore.CryptoInformation.Services
 {
-    public class ICryptoInformationService
+    public interface ICryptoInformationService
     {
-        public ICryptoInformationService()
-        {
-        }
+        Task<Dictionary<string, Datum>> GetListOfAllCryptoAsync();
     }
 }
