@@ -1,21 +1,22 @@
 ﻿<Properties StartupConfiguration="{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="CryptoAlertCore/CryptoInformation/UrlProviders/CryptoUrlProvider.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CryptoAlertCore/Parsers.cs">
     <Files>
       <File FileName="CryptoAlertCore/Configuration/CryptoAlertConfiguration.cs" Line="1" Column="1" />
       <File FileName="CryptoAlertCore/Configuration/ICryptoAlertConfiguration.cs" Line="1" Column="1" />
       <File FileName="CryptoAlertCore/CryptoInformation/DTO/Welcome.cs" Line="46" Column="14" />
-      <File FileName="CryptoAlertConsoleApp/Program.cs" Line="24" Column="32" />
+      <File FileName="CryptoAlertConsoleApp/Program.cs" Line="26" Column="35" />
       <File FileName="CryptoAlert/Controllers/HomeController.cs" Line="23" Column="45" />
       <File FileName="CryptoAlertCore/CryptoInformation/UrlProviders/ICryptoUrlProvider.cs" Line="9" Column="1" />
-      <File FileName="CryptoAlertCore/CryptoInformation/UrlProviders/CryptoUrlProvider.cs" Line="4" Column="55" />
+      <File FileName="CryptoAlertCore/CryptoInformation/UrlProviders/CryptoUrlProvider.cs" Line="15" Column="1" />
+      <File FileName="CryptoAlertCore/CryptoInformation/Services/ICryptoInformationService.cs" Line="12" Column="1" />
+      <File FileName="CryptoAlertCore/CryptoInformation/Services/CryptoInformationService.cs" Line="19" Column="6" />
+      <File FileName="CryptoAlertCore/Parsers.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.CryptoAlert.WebApp PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/Szymon/Desktop/cryptoalert/Source/CryptoAlert/CryptoAlertConsoleApp/Program.cs" relfile="CryptoAlertConsoleApp/Program.cs" line="24" column="36" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.CryptoAlertConsoleApp PreferredExecutionTarget="MonoDevelop.Default" />

@@ -14,5 +14,9 @@
 
   <ItemGroup>
     <Folder Include="CryptoInformation\UrlProviders\" />
+    <Folder Include="CryptoInformation\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Parsers.cs" />
   </ItemGroup>
 </Project>
