@@ -12,24 +12,22 @@ namespace CryptoAlertCore.CryptoInformation.Services
     public class CryptoInformationService : ICryptoInformationService
     {
         private readonly ICryptoUrlProvider _cryptoUrlProvider;
+        private readonly HttpClient _httpClient;
 
         public CryptoInformationService(ICryptoUrlProvider cryptoUrlProvider){
             _cryptoUrlProvider = cryptoUrlProvider;
+            _httpClient = new HttpClient();
         }
 
-        public async Task<Dictionary<string, Datum>> GetListOfAllCryptoAsync()
+
+        public async Task <AllCryptoCurrenciesRootObject> GetListOfAllCryptoAsync()
         {
-            Console.WriteLine("Started GetAsync");
-            var httpClient = new HttpClient();
-            Console.WriteLine("Started GetStringAsync");
+            var parser = new JsonParser<AllCryptoCurrenciesRootObject>();
+            string httpContent = await _httpClient.GetStringAsync(_cryptoUrlProvider.ListOfAllCryptocurriencesUrl);
 
-            IParser<Welcome> parser = new JsonParser<Welcome>(); 
-            string content = await httpClient.GetStringAsync(_cryptoUrlProvider.ListOfAllCryptocurriencesUrl);
-            Welcome welcome = Welcome.FromJson(content);
-
-
-            Dictionary<string, Datum> costam = welcome.Data;
-            return costam;
+            return parser.Parse(httpContent);
         }
+
+
     }
 }

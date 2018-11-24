@@ -11,8 +11,6 @@ namespace CryptoAlertConsoleApp
     class Program
     {
 
-       
-
         public static async Task Start(){
             var service = new CryptoInformationService(new CryptoUrlProvider(new CryptoAlertConfiguration()));
             Console.WriteLine("...");
@@ -24,7 +22,6 @@ namespace CryptoAlertConsoleApp
 
         static void Main(string[] args)
         {
-
             Start().Wait();
             Console.Read();
         }

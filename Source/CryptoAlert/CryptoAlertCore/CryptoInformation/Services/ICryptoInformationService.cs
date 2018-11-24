@@ -8,6 +8,6 @@ namespace CryptoAlertCore.CryptoInformation.Services
 {
     public interface ICryptoInformationService
     {
-        Task<Dictionary<string, Datum>> GetListOfAllCryptoAsync();
+        Task<AllCryptoCurrenciesRootObject> GetListOfAllCryptoAsync();
     }
 }
