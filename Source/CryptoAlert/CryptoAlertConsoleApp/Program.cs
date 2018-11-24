@@ -15,9 +15,9 @@ namespace CryptoAlertConsoleApp
             var service = new CryptoInformationService(new CryptoUrlProvider(new CryptoAlertConfiguration()));
             Console.WriteLine("...");
 
-            var dist = await service.GetListOfAllCryptoAsync();
+            var result = await service.GetListOfAllCryptoAsync();
 
-            Console.WriteLine(dist);
+            Console.WriteLine(result);
         }
 
         static void Main(string[] args)

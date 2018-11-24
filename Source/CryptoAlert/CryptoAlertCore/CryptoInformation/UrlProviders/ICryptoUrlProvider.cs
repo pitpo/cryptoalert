@@ -3,6 +3,7 @@ namespace CryptoAlertCore.CryptoInformation.UrlProviders
 {
     public interface ICryptoUrlProvider
     {
-        string ListOfAllCryptocurriencesUrl { get; }
+        string ListOfAllCryptocurrenciesUrl { get; }
+        string CryptocurrencyByIdUrl { get; }
     }
 }

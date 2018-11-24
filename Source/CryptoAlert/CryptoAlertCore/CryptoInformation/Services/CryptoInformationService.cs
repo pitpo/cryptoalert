@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using CryptoAlertCore.CryptoInformation.DTO;
+using CryptoAlertCore.CryptoInformation.DTO.Coins;
 using CryptoAlertCore.CryptoInformation.UrlProviders;
 using CryptoAlertCore.Parsers;
 
@@ -23,7 +24,7 @@ namespace CryptoAlertCore.CryptoInformation.Services
         public async Task <AllCryptoCurrenciesRootObject> GetListOfAllCryptoAsync()
         {
             var parser = new JsonParser<AllCryptoCurrenciesRootObject>();
-            string httpContent = await _httpClient.GetStringAsync(_cryptoUrlProvider.ListOfAllCryptocurriencesUrl);
+            string httpContent = await _httpClient.GetStringAsync(_cryptoUrlProvider.ListOfAllCryptocurrenciesUrl);
 
             return parser.Parse(httpContent);
         }
