@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using CryptoAlertCore.CryptoInformation.DTO;
 using CryptoAlertCore.CryptoInformation.DTO.Coin;
 using CryptoAlertCore.CryptoInformation.DTO.Coins;
+using CryptoAlertCore.CryptoInformation.Repositories;
 using CryptoAlertCore.CryptoInformation.UrlProviders;
 using CryptoAlertCore.Parsers;
 
@@ -14,29 +12,27 @@ namespace CryptoAlertCore.CryptoInformation.Services
 {
     public class CryptoInformationService : ICryptoInformationService
     {
-        private readonly ICryptoUrlProvider _cryptoUrlProvider;
         private readonly HttpClient _httpClient;
+        private readonly ICoinsRepository _coinsRepository;
 
-        public CryptoInformationService(ICryptoUrlProvider cryptoUrlProvider){
-            _cryptoUrlProvider = cryptoUrlProvider;
+        public CryptoInformationService(ICoinsRepository coinsRepository){
+            _coinsRepository = coinsRepository;
             _httpClient = new HttpClient();
         }
 
         public async Task <IEnumerable<Coin>> GetListOfAllCoinsAsync()
         {
-            var parser = new JsonParser<AllCryptoCurrenciesRootObject>();
-            var httpContent = await _httpClient.GetStringAsync(_cryptoUrlProvider.ListOfAllCryptocurrenciesUrl);
+            var parser = new JsonParser<AllCoinsRootObject>();
+            var httpContent = await _coinsRepository.GetAllCoinsJsonObjectAsync();
 
-            AllCryptoCurrenciesRootObject allCryptoCurrenciesRootObject =  parser.Parse(httpContent);
-            return allCryptoCurrenciesRootObject.Data.Coins.ToList();
+            var allCoinsRootObject =  parser.Parse(httpContent);
+            return allCoinsRootObject.Data.Coins.ToList();
         }
 
         public async Task<Coin> GetCoinAsync(int coinId)
         {
             var parser = new JsonParser<OneCoinRootObject>();
-            var url = $"{_cryptoUrlProvider.CryptocurrencyByIdUrl}/{coinId}";
-            var httpContent = await _httpClient.GetStringAsync(url);
-
+            var httpContent = await _coinsRepository.GetOneCoinJsonObjectAsync(coinId);
             var oneCoinRootObject = parser.Parse(httpContent);
 
             return oneCoinRootObject.Data.Coin;
