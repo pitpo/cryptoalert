@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace CryptoAlertCore.Parsers
 {
-    public class JsonParser<T> : IParser<T> 
+    public class JsonParser : IParser
     {
-        public T Parse(string textToParse)
+        public T Parse<T>(string textToParse)
         {
            return JsonConvert.DeserializeObject<T>(textToParse);
         }

@@ -1,5 +1,4 @@
-﻿using System;
-namespace CryptoAlertCore.CryptoInformation.UrlProviders
+﻿namespace CryptoAlertCore.CryptoInformation.UrlProviders
 {
     public interface ICoinsUrlProvider
     {

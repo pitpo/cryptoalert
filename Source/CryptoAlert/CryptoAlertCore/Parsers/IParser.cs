@@ -1,7 +1,7 @@
 ﻿namespace CryptoAlertCore.Parsers
 {
-    public interface IParser<T>
+    public interface IParser
     {
-        T Parse(string textToParse);
+        T Parse<T>(string textToParse);
     }
 }
