@@ -14,6 +14,6 @@ namespace CryptoAlertCore.CryptoInformation.UrlProviders
         }
 
         public string ListOfAllCryptocurrenciesUrl => $"{_cryptoAlertConfiguration.NewCryptoApiUrl}/public/coins";
-        public string CryptocurrencyByIdUrl => $"{_cryptoAlertConfiguration.NewCryptoApiUrl}/public/coin/";
+        public string CryptocurrencyByIdUrl => $"{_cryptoAlertConfiguration.NewCryptoApiUrl}/public/coin";
     }
 }
