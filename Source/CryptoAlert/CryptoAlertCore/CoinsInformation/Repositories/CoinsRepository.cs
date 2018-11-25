@@ -1,8 +1,8 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using CryptoAlertCore.CryptoInformation.UrlProviders;
+using CryptoAlertCore.CoinsInformation.UrlProviders;
 
-namespace CryptoAlertCore.CryptoInformation.Repositories
+namespace CryptoAlertCore.CoinsInformation.Repositories
 {
     public class CoinsRepository : ICoinsRepository
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CryptoAlertCore.CoinsInformation.Repositories;
+using CryptoAlertCore.CoinsInformation.Services;
+using CryptoAlertCore.CoinsInformation.UrlProviders;
 using CryptoAlertCore.Configuration;
 using CryptoAlertCore.CryptoInformation.DTO;
-using CryptoAlertCore.CryptoInformation.Repositories;
-using CryptoAlertCore.CryptoInformation.Services;
-using CryptoAlertCore.CryptoInformation.UrlProviders;
 using CryptoAlertCore.Parsers;
 
 namespace CryptoAlertConsoleApp
@@ -16,7 +16,7 @@ namespace CryptoAlertConsoleApp
         public static async Task Start()
         {
             var service =
-                new CryptoInformationService(new CoinsRepository(new CoinsUrlProvider(new CryptoAlertConfiguration())), new JsonParser());
+                new CoinsInformationService(new CoinsRepository(new CoinsUrlProvider(new CryptoAlertConfiguration())), new JsonParser());
             Console.WriteLine("...");
 
             var result = await service.GetListOfAllCoinsAsync();

@@ -1,6 +1,6 @@
-﻿using CryptoAlertCore.CryptoInformation.DTO.Coins;
+﻿using CryptoAlertCore.CoinsInformation.DTO.Coins;
 
-namespace CryptoAlertCore.CryptoInformation.DTO.Coin
+namespace CryptoAlertCore.CoinsInformation.DTO.Coin
 {
     public class Data
     {

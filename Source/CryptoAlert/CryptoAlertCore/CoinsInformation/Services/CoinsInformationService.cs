@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CryptoAlertCore.CryptoInformation.DTO.Coin;
-using CryptoAlertCore.CryptoInformation.DTO.Coins;
-using CryptoAlertCore.CryptoInformation.Repositories;
+using CryptoAlertCore.CoinsInformation.DTO.Coin;
+using CryptoAlertCore.CoinsInformation.DTO.Coins;
+using CryptoAlertCore.CoinsInformation.Repositories;
 using CryptoAlertCore.Parsers;
 
-namespace CryptoAlertCore.CryptoInformation.Services
+namespace CryptoAlertCore.CoinsInformation.Services
 {
-    public class CryptoInformationService : ICryptoInformationService
+    public class CoinsInformationService : ICoinsInformationService
     {
         private readonly ICoinsRepository _coinsRepository;
         private readonly IParser _parser;
 
-        public CryptoInformationService(ICoinsRepository coinsRepository, IParser parser)
+        public CoinsInformationService(ICoinsRepository coinsRepository, IParser parser)
         {
             _coinsRepository = coinsRepository;
             _parser = parser;
@@ -22,8 +22,8 @@ namespace CryptoAlertCore.CryptoInformation.Services
         public async Task <IEnumerable<Coin>> GetListOfAllCoinsAsync()
         {
             var content = await _coinsRepository.GetAllCoinsJsonObjectAsync();
-
             var allCoinsRootObject =  _parser.Parse<AllCoinsRootObject>(content);
+
             return allCoinsRootObject.Data.Coins.ToList();
         }
 

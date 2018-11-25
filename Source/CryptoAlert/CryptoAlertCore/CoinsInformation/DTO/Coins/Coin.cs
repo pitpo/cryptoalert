@@ -1,4 +1,4 @@
-﻿namespace CryptoAlertCore.CryptoInformation.DTO.Coins
+﻿namespace CryptoAlertCore.CoinsInformation.DTO.Coins
 {
     public class Coin
     {

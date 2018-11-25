@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CryptoAlertCore.CryptoInformation.Repositories
+namespace CryptoAlertCore.CoinsInformation.Repositories
 {
     public interface ICoinsRepository
     {

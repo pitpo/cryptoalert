@@ -1,7 +1,7 @@
-﻿namespace CryptoAlertCore.CryptoInformation.DTO.Coins
+﻿namespace CryptoAlertCore.CoinsInformation.DTO.Coin
 {
 
-    public class AllCoinsRootObject
+    public class OneCoinRootObject
     {
         public string Status { get; set; }
         public Data Data { get; set; }

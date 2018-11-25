@@ -1,7 +1,6 @@
-﻿using System;
-using CryptoAlertCore.Configuration;
+﻿using CryptoAlertCore.Configuration;
 
-namespace CryptoAlertCore.CryptoInformation.UrlProviders
+namespace CryptoAlertCore.CoinsInformation.UrlProviders
 {
     public class CoinsUrlProvider : ICoinsUrlProvider
     {
