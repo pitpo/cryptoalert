@@ -13,3 +13,5 @@
 /Source/CryptoAlert/CryptoAlertCore/obj
 /Source/CryptoAlert/CryptoAlertConsoleApp/bin/Debug/netcoreapp2.1
 /Source/CryptoAlert/CryptoAlertConsoleApp/obj
+/Source/CryptoAlert/CryptoAlert.NUnit.Integration/bin/Debug/netcoreapp2.1
+/Source/CryptoAlert/CryptoAlert.NUnit.Integration/obj
