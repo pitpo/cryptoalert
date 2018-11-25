@@ -1,7 +1,4 @@
 ﻿using CryptoAlertCore.CoinsInformation.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CryptoAlertCore.CoinsInformation.Factories
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using CryptoAlertCore.CoinsInformation.Services;
+﻿using CryptoAlertCore.CoinsInformation.Services;
 using CryptoAlertCore.Parsers;
 using CryptoAlertCore.CoinsInformation.Repositories;
 using CryptoAlertCore.CoinsInformation.UrlProviders;
@@ -8,7 +7,7 @@ using CryptoAlertCore.Wrappers;
 
 namespace CryptoAlertCore.CoinsInformation.Factories
 {
-    class CoinInformationServiceFactory : ICoinInformationServiceFactory
+    public class CoinInformationServiceFactory : ICoinInformationServiceFactory
     {
 
         public ICoinsInformationService Create()
