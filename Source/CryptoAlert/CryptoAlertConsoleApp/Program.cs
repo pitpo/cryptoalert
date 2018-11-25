@@ -5,7 +5,6 @@ using CryptoAlertCore.CoinsInformation.Repositories;
 using CryptoAlertCore.CoinsInformation.Services;
 using CryptoAlertCore.CoinsInformation.UrlProviders;
 using CryptoAlertCore.Configuration;
-using CryptoAlertCore.CryptoInformation.DTO;
 using CryptoAlertCore.Parsers;
 
 namespace CryptoAlertConsoleApp
