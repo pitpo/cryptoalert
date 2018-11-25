@@ -15,7 +15,6 @@ using NUnit.Framework;
 
 namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
 {
-#pragma warning disable AV1706 // Identifier contains an abbreviation or is too short
     [TestFixture]
     public class CoinsInformationServicesTests
     {
@@ -43,13 +42,11 @@ namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
             //Arrange
             var urlEndpoint = "https://RANDOMENDPOINT.RANDOM/";
 
-
             _coinsUrlProviderMock.Setup(x => x.ListOfAllCoinsUrl)
-
                 .Returns(urlEndpoint);
 
             _httpClientMock.Setup(x => x.GetStringAsync(urlEndpoint))
-                .Returns(Task.FromResult<string>(CoinsRepositoryTestResources.AllCoinsJsonResource));
+                .Returns(Task.FromResult<string>("ASf"));
 
             //Act
             IEnumerable<Coin> result = _sut.GetListOfAllCoinsAsync().Result;
@@ -58,6 +55,6 @@ namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
             result.ToList().Count.Should().Be(50);
 
         }
-#pragma warning restore AV1706 // Identifier contains an abbreviation or is too short
+
     }
 }
