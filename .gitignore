@@ -19,5 +19,7 @@
 /Source/CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlert.NUnit.Integration/Debug/netcoreapp2.1
 /Source/CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlertCore/Debug/netcoreapp2.1
 /Source/CryptoAlert/.vs/CryptoAlert/lut/0/1
-/Source/CryptoAlert/.vs/CryptoAlert/lut/0
+/Source/CryptoAlert/.vs/*
 /Source/CryptoAlert/.vs/CryptoAlert/lut
+/Source/CryptoAlert/CryptoAlert.Integration/obj
+Source/CryptoAlert/CryptoAlert.Integration/bin
