@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlert.WebApp", "Crypt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0BDADCAC-6643-4207-A3F6-E8CB65288B8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlert.Nunit", "Tests\CryptoAlert.Nunit\CryptoAlert.Nunit.csproj", "{7270EB92-7751-47DC-BA16-D124EA248D17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlert.NUnit", "Tests\CryptoAlert.Nunit\CryptoAlert.NUnit.csproj", "{7270EB92-7751-47DC-BA16-D124EA248D17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoAlertCore", "CryptoAlertCore\CryptoAlertCore.csproj", "{111C82A3-7BCE-406F-AD4A-7D72251AF45F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlertCore", "CryptoAlertCore\CryptoAlertCore.csproj", "{111C82A3-7BCE-406F-AD4A-7D72251AF45F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlertConsoleApp", "CryptoAlertConsoleApp\CryptoAlertConsoleApp.csproj", "{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoAlert.NUnit.Integration", "CryptoAlert.NUnit.Integration\CryptoAlert.NUnit.Integration.csproj", "{788A5446-4AFE-49CB-9383-4029C311D49A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +33,21 @@ Global
 		{111C82A3-7BCE-406F-AD4A-7D72251AF45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{111C82A3-7BCE-406F-AD4A-7D72251AF45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{111C82A3-7BCE-406F-AD4A-7D72251AF45F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06928CC1-C316-4B3B-88F6-6F559E4DBA7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{788A5446-4AFE-49CB-9383-4029C311D49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788A5446-4AFE-49CB-9383-4029C311D49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788A5446-4AFE-49CB-9383-4029C311D49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788A5446-4AFE-49CB-9383-4029C311D49A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7270EB92-7751-47DC-BA16-D124EA248D17} = {0BDADCAC-6643-4207-A3F6-E8CB65288B8B}
+		{788A5446-4AFE-49CB-9383-4029C311D49A} = {0BDADCAC-6643-4207-A3F6-E8CB65288B8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC54F592-924D-4231-8398-2BA84990813D}
