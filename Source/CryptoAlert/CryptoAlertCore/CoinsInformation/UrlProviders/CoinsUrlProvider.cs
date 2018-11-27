@@ -12,7 +12,7 @@ namespace CryptoAlertCore.CoinsInformation.UrlProviders
             _cryptoAlertConfiguration = cryptoAlertConfiguration;
         }
 
-        public string ListOfAllCoinsUrl => $"{_cryptoAlertConfiguration.NewCryptoApiUrl}/public/coins";
-        public string CoinByIdUrl => $"{_cryptoAlertConfiguration.NewCryptoApiUrl}/public/coin";
+        public string ListOfAllCoinsUrl => $"{_cryptoAlertConfiguration.CryptoApiUrl}/public/coins";
+        public string CoinByIdUrl => $"{_cryptoAlertConfiguration.CryptoApiUrl}/public/coin";
     }
 }

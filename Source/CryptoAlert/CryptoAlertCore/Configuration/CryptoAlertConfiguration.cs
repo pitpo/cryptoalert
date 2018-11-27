@@ -2,6 +2,6 @@
 {
     public class CryptoAlertConfiguration : ICryptoAlertConfiguration
     {
-        public string NewCryptoApiUrl => "https://api.coinranking.com/v1";
+        public string CryptoApiUrl => "https://api.coinranking.com/v1";
     }
 }

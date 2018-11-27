@@ -2,6 +2,6 @@
 {
     public interface ICryptoAlertConfiguration
     {
-       string NewCryptoApiUrl { get;}
+       string CryptoApiUrl { get;}
     }
 }
