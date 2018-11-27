@@ -19,7 +19,7 @@
         public long Volume { get; set; }
         public bool Penalty { get; set; }
         public string Price { get; set; }
-        public Alltimehigh AllTimeHigh { get; set; }
+        public AllTimeHigh AllTimeHigh { get; set; }
         public int Rank { get; set; }
         public string[] History { get; set; }
         public float Change { get; set; }
