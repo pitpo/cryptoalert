@@ -1,29 +1,4 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-# /CryptoAlert/.vs/CryptoAlert/v15/Server/sqlite3
-# /CryptoAlert/Tests/CryptoAlert.Nunit/bin/*
-# /CryptoAlert/CryptoAlert/bin*
-# /CryptoAlert/.vs/CryptoAlert/DesignTimeBuild
-# /CryptoAlert/.vscode/*
-# /CryptoAlert/CryptoAlert/obj/*
-# /CryptoAlert/Tests/CryptoAlert.Nunit/obj/
-# /CryptoAlert/CryptoAlertCore/bin/Debug/netcoreapp2.1
-# /CryptoAlert/CryptoAlertCore/obj
-# /CryptoAlert/CryptoAlertConsoleApp/bin/Debug/netcoreapp2.1
-# /CryptoAlert/CryptoAlertConsoleApp/obj
-# /CryptoAlert/CryptoAlert.NUnit.Integration/bin/Debug/netcoreapp2.1
-# /CryptoAlert/CryptoAlert.NUnit.Integration/obj
-# /CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlert.NUnit/Debug/netcoreapp2.1
-# /CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlert.NUnit.Integration/Debug/netcoreapp2.1
-# /CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlertCore/Debug/netcoreapp2.1
-# /CryptoAlert/.vs/CryptoAlert/lut/0/1
-# /CryptoAlert/.vs/*
-# /CryptoAlert/.vs/CryptoAlert/lut
-# /CryptoAlert/CryptoAlert.Integration/obj
-# /CryptoAlert/CryptoAlert.Integration/bin
-**/.vs/*
+﻿**/.vs/*
 **/.vscode/*
 **/obj/*
 **/bin/*
