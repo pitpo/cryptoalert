@@ -8,22 +8,33 @@
 
 <h2>AllCrypto</h2>
 
-<table>
+<table class="table table-striped">
     
     <tr>
-        <th>Name</th>
-        <th>Price</th>
+        <th scope="col">Icon</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Change</th>
+        
     </tr>
 
     @foreach (var coin in Model.ListOfAllCoins)
     {
+    <tr>
+        <td><img src="@coin.IconUrl" alt="@coin.Name" style="width:5vw;height:5vh;"></td>
+        <td style="vertical-align:middle">@coin.Name</td>
+        <td style="vertical-align:middle">@coin.Price.Substring(0, 8)</td>
 
+        @if (@coin.Change >= 0)
+        {
+            <td style="vertical-align: middle; color: green; font-weight: bold">@coin.Change%</td>
+        }
+        else
+        {
+            <td style="vertical-align: middle;color: red"; font-weight: bold>@coin.Change%</td>
+        }
 
-       
-        <tr>
-            <td>@coin.Name</td>
-            <td>@coin.Price</td>
-        </tr>
+    </tr>
 
 }
 
