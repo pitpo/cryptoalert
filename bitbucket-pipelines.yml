@@ -8,17 +8,19 @@ image: microsoft/dotnet:sdk
 pipelines:
   default:
     - step:
+        name: Build
         caches:
           - dotnetcore
         script: 
           - cd ./Source/CryptoAlert  
           - dotnet restore
           - dotnet build 
-         
-     - step:
+          
+    - step:
+         name: Run unit tests
          caches:
            - dotnetcore
-          script: 
+         script: 
            - cd ./Source/Tests/CryptoAlert.NUnit  
            - dotnet restore
            - dotnet test
