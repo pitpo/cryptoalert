@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
+using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Factories;
+using LiteDB;
 
 namespace CryptoAlertConsoleApp
 {
@@ -20,7 +23,7 @@ namespace CryptoAlertConsoleApp
 
         static void Main(string[] args)
         {
-            Start().Wait();
+            //Start().Wait();
             Console.Read();
         }
     }
