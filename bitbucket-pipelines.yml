@@ -13,11 +13,14 @@ pipelines:
           - dotnetcore
         script: 
           - cd ./Source/CryptoAlert
-          - ls  
           - dotnet restore
           - dotnet build 
-          - ls
-          - cd ../Tests/CryptoAlert.NUnit
-          - ls  
+          - ls -la
+          - cd ..
+          - ls -la
+          - cd Tests
+          - ls -la
+          - cd CryptoAlert.Nunit
+          - ls -la
           - dotnet restore
           - dotnet test
