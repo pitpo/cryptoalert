@@ -2,24 +2,28 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Source/CryptoAlert/.vs/CryptoAlert/v15/Server/sqlite3
-/Source/CryptoAlert/Tests/CryptoAlert.Nunit/bin*
-/Source/CryptoAlert/CryptoAlert/bin*
-/Source/CryptoAlert/.vs/CryptoAlert/DesignTimeBuild
-/Source/CryptoAlert/.vscode/*
-/Source/CryptoAlert/CryptoAlert/obj/*
-/Source/CryptoAlert/Tests/CryptoAlert.Nunit/obj/*
-/Source/CryptoAlert/CryptoAlertCore/bin/Debug/netcoreapp2.1
-/Source/CryptoAlert/CryptoAlertCore/obj
-/Source/CryptoAlert/CryptoAlertConsoleApp/bin/Debug/netcoreapp2.1
-/Source/CryptoAlert/CryptoAlertConsoleApp/obj
-/Source/CryptoAlert/CryptoAlert.NUnit.Integration/bin/Debug/netcoreapp2.1
-/Source/CryptoAlert/CryptoAlert.NUnit.Integration/obj
-/Source/CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlert.NUnit/Debug/netcoreapp2.1
-/Source/CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlert.NUnit.Integration/Debug/netcoreapp2.1
-/Source/CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlertCore/Debug/netcoreapp2.1
-/Source/CryptoAlert/.vs/CryptoAlert/lut/0/1
-/Source/CryptoAlert/.vs/*
-/Source/CryptoAlert/.vs/CryptoAlert/lut
-/Source/CryptoAlert/CryptoAlert.Integration/obj
-Source/CryptoAlert/CryptoAlert.Integration/bin
+# /CryptoAlert/.vs/CryptoAlert/v15/Server/sqlite3
+# /CryptoAlert/Tests/CryptoAlert.Nunit/bin/*
+# /CryptoAlert/CryptoAlert/bin*
+# /CryptoAlert/.vs/CryptoAlert/DesignTimeBuild
+# /CryptoAlert/.vscode/*
+# /CryptoAlert/CryptoAlert/obj/*
+# /CryptoAlert/Tests/CryptoAlert.Nunit/obj/
+# /CryptoAlert/CryptoAlertCore/bin/Debug/netcoreapp2.1
+# /CryptoAlert/CryptoAlertCore/obj
+# /CryptoAlert/CryptoAlertConsoleApp/bin/Debug/netcoreapp2.1
+# /CryptoAlert/CryptoAlertConsoleApp/obj
+# /CryptoAlert/CryptoAlert.NUnit.Integration/bin/Debug/netcoreapp2.1
+# /CryptoAlert/CryptoAlert.NUnit.Integration/obj
+# /CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlert.NUnit/Debug/netcoreapp2.1
+# /CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlert.NUnit.Integration/Debug/netcoreapp2.1
+# /CryptoAlert/.vs/CryptoAlert/lut/0/0/CryptoAlertCore/Debug/netcoreapp2.1
+# /CryptoAlert/.vs/CryptoAlert/lut/0/1
+# /CryptoAlert/.vs/*
+# /CryptoAlert/.vs/CryptoAlert/lut
+# /CryptoAlert/CryptoAlert.Integration/obj
+# /CryptoAlert/CryptoAlert.Integration/bin
+**/.vs/*
+**/.vscode/*
+**/obj/*
+**/bin/*
