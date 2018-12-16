@@ -5,7 +5,7 @@ namespace CryptoAlertCore.DBRepository
 {
     public abstract class DBRepository<T> : IDBRepository<T> where T: DBModel
     {
-        protected string _connectionString;
+        protected readonly string _connectionString;
 
         public DBRepository(string connectionString)
         {

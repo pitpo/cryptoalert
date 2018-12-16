@@ -3,6 +3,6 @@
     public interface ICryptoAlertConfiguration
     {
         string CryptoApiUrl { get;}
-        string UsersConnectionString { get; }
+        string UsersDatabaseConnectionString { get; }
     }
 }
