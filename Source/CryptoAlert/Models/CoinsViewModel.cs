@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CryptoAlert.WebApp.Models
 {
-    public class AllCryptoViewModel : PageModel
+    public class CoinsViewModel : PageModel
     {
 
         private ICoinsInformationService _coinsInformationService;
 
-        public AllCryptoViewModel()
+        public CoinsViewModel()
         {
             ICoinInformationServiceFactory coinInformationServiceFactory
                 = new CoinInformationServiceFactory();
@@ -21,7 +21,6 @@ namespace CryptoAlert.WebApp.Models
         }
 
         public List<Coin> ListOfAllCoins => _coinsInformationService.GetListOfAllCoinsAsync().Result.ToList();
-        public string Kapusta => "AFSFDFKAPUSTA";
 
         public void OnGet()
         {

@@ -1,12 +1,11 @@
-﻿@using CryptoAlertCore.CoinsInformation.DTO.Coins
-@model CryptoAlert.WebApp.Models.AllCryptoViewModel
+﻿@model CryptoAlert.WebApp.Models.CoinsViewModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Coins";
     Layout = "_Layout";
 }
 
-<h2>AllCrypto</h2>
+<br/>
 
 <table class="table table-striped">
     
@@ -15,13 +14,14 @@
         <th scope="col">Name</th>
         <th scope="col">Price</th>
         <th scope="col">Change</th>
+        <th scope="col">More info</th>
         
     </tr>
 
     @foreach (var coin in Model.ListOfAllCoins)
     {
     <tr>
-        <td><img src="@coin.IconUrl" alt="@coin.Name" style="width:5vw;height:5vh;"></td>
+        <td style="vertical-align:middle"><img src="@coin.IconUrl" alt="@coin.Name" style="width:5vw;height:5vh;"></td>
         <td style="vertical-align:middle">@coin.Name</td>
         <td style="vertical-align:middle">@coin.Price.Substring(0, 8)</td>
 
@@ -31,8 +31,10 @@
         }
         else
         {
-            <td style="vertical-align: middle;color: red"; font-weight: bold>@coin.Change%</td>
+            <td style="vertical-align: middle; color: red; font-weight: bold"> @Math.Abs(@coin.Change)%</td>
         }
+        
+        <td style="vertical-align: middle"><a href="">More Info</a></td>
 
     </tr>
 
