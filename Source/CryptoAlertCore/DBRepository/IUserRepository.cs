@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CryptoAlertCore.Models;
-using LiteDB;
+﻿using CryptoAlertCore.Models;
 
 namespace CryptoAlertCore.DBRepository
 {
