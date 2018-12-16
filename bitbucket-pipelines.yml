@@ -8,10 +8,15 @@ image: microsoft/dotnet:sdk
 pipelines:
   default:
     - step:
+        name: Build
         caches:
           - dotnetcore
         script: 
-          - cd ./Source/CryptoAlert  
+          - cd ./Source/CryptoAlert
           - dotnet restore
           - dotnet build 
-        
+          - cd ..
+          - cd Tests
+          - cd CryptoAlert.Nunit
+          - dotnet restore
+          - dotnet test
