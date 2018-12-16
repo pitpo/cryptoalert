@@ -3,7 +3,7 @@ using LiteDB;
 
 namespace CryptoAlertCore.DBRepository
 {
-    public abstract class DBRepository<T> : IDBRepository<T> where T: DBModel
+    public class DBRepository<T> : IDBRepository<T> where T: DBModel
     {
         protected readonly string _connectionString;
 
@@ -14,9 +14,16 @@ namespace CryptoAlertCore.DBRepository
 
         public T GetById(int id)
         {
+            return GetByKey<int>("_id", id);
+        }
+
+        public T GetByKey<U>(string key, U value)
+        {
             using (LiteRepository db = new LiteRepository(_connectionString))
             {
-                return db.Query<T>().Where(x => x.Id == id).First();
+                BsonValue bsonValue = new BsonValue(value);
+                if (bsonValue == null) return null;
+                return db.First<T>(Query.EQ(key, bsonValue));
             }
         }
 

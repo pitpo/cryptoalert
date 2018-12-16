@@ -25,7 +25,7 @@ namespace CryptoAlertConsoleApp
 
         public static void TestDB()
         {
-            IUserRepository userRepository = new UserRepository(ConfigurationManager.ConnectionStrings["LiteDB"].ConnectionString);
+            IDBRepository<User> userRepository = new DBRepository<User>(ConfigurationManager.ConnectionStrings["LiteDB"].ConnectionString);
             User u1 = new User();
             u1.Email = "twojastara@dupajasia.com";
             User u2 = new User();
@@ -33,14 +33,14 @@ namespace CryptoAlertConsoleApp
             Console.WriteLine(userRepository.Insert(u1));
             Console.WriteLine(userRepository.Insert(u2));
 
-            User r1 = userRepository.GetByEmail("jakubkiermasz@pear.com");
+            User r1 = userRepository.GetByKey<String>("Email", "jakubkiermasz@pear.com");
 
             r1.Name = "Dzban";
-            r1.Password = "12345";
+            r1.HashedPassword = "12345";
 
             Console.WriteLine(userRepository.Update(r1));
 
-            User r2 = userRepository.GetByEmail("jakubkiermasz@pear.com");
+            User r2 = userRepository.GetByKey<String>("Email", "jakubkiermasz@pear.com");
 
             User r3 = userRepository.GetById(1);
             Console.Write("");
