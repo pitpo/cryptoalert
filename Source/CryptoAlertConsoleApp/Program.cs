@@ -3,6 +3,8 @@ using System.Configuration;
 using System.Threading.Tasks;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Factories;
+using CryptoAlertCore.DBRepository;
+using CryptoAlertCore.Models;
 using LiteDB;
 
 namespace CryptoAlertConsoleApp
@@ -21,9 +23,33 @@ namespace CryptoAlertConsoleApp
             Console.WriteLine(result);
         }
 
+        public static void TestDB()
+        {
+            IUserRepository userRepository = new UserRepository(ConfigurationManager.ConnectionStrings["LiteDB"].ConnectionString);
+            User u1 = new User();
+            u1.Email = "twojastara@dupajasia.com";
+            User u2 = new User();
+            u2.Email = "jakubkiermasz@pear.com";
+            Console.WriteLine(userRepository.Insert(u1));
+            Console.WriteLine(userRepository.Insert(u2));
+
+            User r1 = userRepository.GetByEmail("jakubkiermasz@pear.com");
+
+            r1.Name = "Dzban";
+            r1.Password = "12345";
+
+            Console.WriteLine(userRepository.Update(r1));
+
+            User r2 = userRepository.GetByEmail("jakubkiermasz@pear.com");
+
+            User r3 = userRepository.GetById(1);
+            Console.Write("");
+        }
+
         static void Main(string[] args)
         {
             //Start().Wait();
+            TestDB();
             Console.Read();
         }
     }
