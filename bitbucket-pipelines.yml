@@ -12,9 +12,12 @@ pipelines:
         caches:
           - dotnetcore
         script: 
-          - cd ./Source/CryptoAlert  
+          - cd ./Source/CryptoAlert
+          - ls  
           - dotnet restore
           - dotnet build 
-          - cd ../Tests/CryptoAlert.NUnit  
+          - ls
+          - cd ../Tests/CryptoAlert.NUnit
+          - ls  
           - dotnet restore
           - dotnet test
