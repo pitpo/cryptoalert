@@ -1,34 +1,22 @@
 ﻿using System.Diagnostics;
-using System.Threading.Tasks;
+using CryptoAlert.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using CryptoAlert.Models;
-using System.Net.Http;
 
-namespace CryptoAlert.Controllers
+namespace CryptoAlert.WebApp.Controllers
 {
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return new CoinsController().Index();
         }
 
-        public async Task<IActionResult> AboutAsync()
+        public IActionResult About()
         {
-            var httpClient = new HttpClient();
-            var content = await httpClient.GetStringAsync("https://www.cryptocompare.com/api/data/coinlist/");
-
             return View();
         }
 
         public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
@@ -37,6 +25,6 @@ namespace CryptoAlert.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        } 
     }
 }
