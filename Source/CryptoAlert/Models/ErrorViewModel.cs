@@ -1,6 +1,4 @@
-using System;
-
-namespace CryptoAlert.Models
+namespace CryptoAlert.WebApp.Models
 {
     public class ErrorViewModel
     {

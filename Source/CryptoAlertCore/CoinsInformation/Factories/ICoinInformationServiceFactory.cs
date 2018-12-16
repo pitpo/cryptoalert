@@ -2,7 +2,7 @@
 
 namespace CryptoAlertCore.CoinsInformation.Factories
 {
-    interface ICoinInformationServiceFactory
+    public interface ICoinInformationServiceFactory
     {
         ICoinsInformationService Create();
     }
