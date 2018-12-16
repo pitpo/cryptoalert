@@ -15,12 +15,6 @@ pipelines:
           - cd ./Source/CryptoAlert  
           - dotnet restore
           - dotnet build 
-          
-    - step:
-         name: Run unit tests
-         caches:
-           - dotnetcore
-         script: 
-           - cd ./Source/Tests/CryptoAlert.NUnit  
-           - dotnet restore
-           - dotnet test
+          - cd ../Tests/CryptoAlert.NUnit  
+          - dotnet restore
+          - dotnet test
