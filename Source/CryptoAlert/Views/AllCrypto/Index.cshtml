@@ -1,0 +1,30 @@
+﻿@using CryptoAlertCore.CoinsInformation.DTO.Coins
+@model CryptoAlert.WebApp.Models.AllCryptoViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>AllCrypto</h2>
+
+<table>
+    
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+
+    @foreach (var coin in Model.ListOfAllCoins)
+    {
+
+
+       
+        <tr>
+            <td>@coin.Name</td>
+            <td>@coin.Price</td>
+        </tr>
+
+}
+
+</table>

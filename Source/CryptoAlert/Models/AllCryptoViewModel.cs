@@ -3,14 +3,15 @@ using System.Linq;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Services;
 using CryptoAlertCore.CoinsInformation.Factories;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
 namespace CryptoAlert.WebApp.Models
 {
-    public class AllCryptoViewModel
+    public class AllCryptoViewModel : PageModel
     {
 
-        private readonly ICoinsInformationService _coinsInformationService;
+        private ICoinsInformationService _coinsInformationService;
 
         public AllCryptoViewModel()
         {
@@ -19,6 +20,14 @@ namespace CryptoAlert.WebApp.Models
             _coinsInformationService = coinInformationServiceFactory.Create();
         }
 
-        public  List<Coin> ListOfAllCoins => _coinsInformationService.GetListOfAllCoinsAsync().Result.ToList();
+        public List<Coin> ListOfAllCoins => _coinsInformationService.GetListOfAllCoinsAsync().Result.ToList();
+        public string Kapusta => "AFSFDFKAPUSTA";
+
+        public void OnGet()
+        {
+            ICoinInformationServiceFactory coinInformationServiceFactory
+                = new CoinInformationServiceFactory();
+            _coinsInformationService = coinInformationServiceFactory.Create();
+        }
     }
 }
