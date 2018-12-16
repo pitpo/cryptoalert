@@ -14,4 +14,11 @@ pipelines:
           - cd ./Source/CryptoAlert  
           - dotnet restore
           - dotnet build 
-        
+         
+     - step:
+         caches:
+           - dotnetcore
+          script: 
+           - cd ./Source/Tests/CryptoAlert.NUnit  
+           - dotnet restore
+           - dotnet test
