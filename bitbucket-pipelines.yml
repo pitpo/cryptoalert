@@ -10,9 +10,8 @@ pipelines:
     - step:
         caches:
           - dotnetcore
-        script: # Modify the comma`nds below to build your repository.
-          - export PROJECT_NAME=CryptoAlert
-          - export TEST_NAME=yourTestName
+        script: 
+          - cd ./Source/CryptoAlert  
           - dotnet restore
-          - dotnet build $PROJECT_NAME
-          - dotnet test $TEST_NAME
+          - dotnet build 
+        
