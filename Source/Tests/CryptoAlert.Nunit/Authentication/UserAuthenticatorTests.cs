@@ -14,7 +14,8 @@ namespace CryptoAlert.NUnit.Authentication
     class UserAuthenticatorTests
     {
         private User _user;
-        private Mock<IDBRepository<User>> _dbRepositoryMock;
+        private const String _sample_email = "jankowalski@uj.edu.pl";
+        private Mock<IDBRepository<User>> _userDbRepositoryMock;
         private Mock<IBCryptWrapper> _bCryptWrapperMock;
 
         private UserAuthenticator _sut;
@@ -23,18 +24,18 @@ namespace CryptoAlert.NUnit.Authentication
         public void SetUp()
         {
             _user = CreateUser();
-            _dbRepositoryMock = new Mock<IDBRepository<User>>();
+            _userDbRepositoryMock = new Mock<IDBRepository<User>>();
             _bCryptWrapperMock = new Mock<IBCryptWrapper>();
 
-            _dbRepositoryMock.Setup(x => x.GetByKey<String>("Email", "jankowalski@uj.edu.pl")).Returns(_user);
+            _userDbRepositoryMock.Setup(x => x.GetByKey<String>("Email", _sample_email)).Returns(_user);
             _bCryptWrapperMock.Setup(x => x.Verify(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
             _bCryptWrapperMock.Setup(x => x.Verify("correctpass", _user.HashedPassword)).Returns(true);
 
-            _sut = new UserAuthenticator(_dbRepositoryMock.Object, _bCryptWrapperMock.Object);
+            _sut = new UserAuthenticator(_userDbRepositoryMock.Object, _bCryptWrapperMock.Object);
         }
 
-        [TestCase("jankowalski@uj.edu.pl", "correctpass", ExpectedResult = true)]
-        [TestCase("jankowalski@uj.edu.pl", "incorrectpass", ExpectedResult = false)]
+        [TestCase(_sample_email, "correctpass", ExpectedResult = true)]
+        [TestCase(_sample_email, "incorrectpass", ExpectedResult = false)]
         public bool TestPasswordVerification(string email, string unhashedPassword)
         {
             // Act
@@ -48,7 +49,7 @@ namespace CryptoAlert.NUnit.Authentication
         {
             User user = new User()
             {
-                Email = "jankowalksi@uj.edu.pl",
+                Email = _sample_email,
                 HashedPassword = "hashedpass",
                 Id = 1,
                 Name = "Jan Kowalski"
