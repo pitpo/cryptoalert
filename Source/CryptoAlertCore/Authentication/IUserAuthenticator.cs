@@ -4,6 +4,7 @@ namespace CryptoAlertCore.Authentication
 {
     public interface IUserAuthenticator
     {
-        bool Verify(String email, String unhashedPassword);
+        bool VerifyPassword(String email, String unhashedPassword);
+        string AuthenticateUser(String jsonString);
     }
 }

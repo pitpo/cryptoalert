@@ -6,8 +6,8 @@ namespace CryptoAlertCore.Authentication.Services
 {
     public interface IUserAuthenticationService
     {
-        bool CreateUser(String jsonString);
-        String AuthenticateUser(String jsonString);
-        (bool verified, String status) VerifyToken(String token);
+        IUserAuthenticator UserAuthenticator { get; }
+        IUserCreator UserCreator { get; }
+        ITokenVerifier TokenVerifier { get; }
     }
 }

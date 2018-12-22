@@ -26,14 +26,14 @@ namespace CryptoAlertConsoleApp
             IUserAuthenticationServiceFactory userAuthenticationServiceFactory = new UserAuthenticationServiceFactory();
             IUserAuthenticationService userAuthenticationService = userAuthenticationServiceFactory.Create();
             Console.WriteLine("Zaczynamy!");
-            if (userAuthenticationService.CreateUser("{\"Name\": \"Andrzej Duda\", \"Password\": \"lubiewkotki\", \"Email\": \"prezydent@gov.pl\"}"))
+            if (userAuthenticationService.UserCreator.CreateUser("{\"Name\": \"Andrzej Duda\", \"Password\": \"lubiewkotki\", \"Email\": \"prezydent@gov.pl\"}"))
             {
                 Console.WriteLine("Dudeł ma konto");
-                string token = userAuthenticationService.AuthenticateUser("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
+                string token = userAuthenticationService.UserAuthenticator.AuthenticateUser("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
                 if (token != null)
                 {
                     Console.WriteLine("Dudeł istnieje i podał dobre hasło");
-                    (bool verified, string status) = userAuthenticationService.VerifyToken(token);
+                    (bool verified, string status) = userAuthenticationService.TokenVerifier.VerifyToken(token);
                     if (verified)
                     {
                         Console.WriteLine("Tokenik się zgadza, mamy połączenie od " + status);

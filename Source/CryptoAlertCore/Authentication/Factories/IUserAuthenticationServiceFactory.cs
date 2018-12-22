@@ -7,6 +7,6 @@ namespace CryptoAlertCore.Authentication.Factories
 {
     public interface IUserAuthenticationServiceFactory
     {
-        UserAuthenticationService Create();
+        IUserAuthenticationService Create();
     }
 }

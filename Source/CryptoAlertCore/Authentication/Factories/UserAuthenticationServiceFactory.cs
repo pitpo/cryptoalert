@@ -12,15 +12,17 @@ namespace CryptoAlertCore.Authentication.Factories
 {
     public class UserAuthenticationServiceFactory : IUserAuthenticationServiceFactory
     {
-        public UserAuthenticationService Create()
+        public IUserAuthenticationService Create()
         {
             ICryptoAlertConfiguration configuration = new CryptoAlertConfiguration();
             IDBRepository<User> userDbRepository = new DBRepository<User>(configuration.UsersDatabaseConnectionString);
             IParser parser = new JsonParser();
             IBCryptWrapper bCryptWrapper = new BCryptWrapper();
-            IUserAuthenticator userAuthenticator = new UserAuthenticator(userDbRepository, bCryptWrapper);
             IJWTWrapper jwtWrapper = new JWTWrapper(configuration.JsonWebTokenSecret);
-            return new UserAuthenticationService(userDbRepository, parser, userAuthenticator, bCryptWrapper, jwtWrapper);
+            IUserAuthenticator userAuthenticator = new UserAuthenticator(userDbRepository, parser, bCryptWrapper, jwtWrapper);
+            IUserCreator userCreator = new UserCreator(parser, userDbRepository, bCryptWrapper);
+            ITokenVerifier tokenVerifier = new TokenVerifier(jwtWrapper, parser);
+            return new UserAuthenticationService(userAuthenticator, userCreator, tokenVerifier);
         }
     }
 }
