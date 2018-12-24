@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CryptoAlertCore.Authentication.Wrappers
+﻿namespace CryptoAlertCore.Authentication.Wrappers
 {
     class BCryptWrapper : IBCryptWrapper
     {

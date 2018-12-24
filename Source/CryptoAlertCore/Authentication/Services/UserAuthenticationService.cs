@@ -12,7 +12,5 @@
             UserCreator = userCreator;
             TokenVerifier = tokenVerifier;
         }
-
-        
     }
 }

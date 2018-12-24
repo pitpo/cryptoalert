@@ -42,19 +42,33 @@ namespace CryptoAlert.NUnit.Authentication
         [TestCase(_SAMPLE_EMAIL, "incorrectpass", ExpectedResult = false)]
         public bool TestPasswordVerification(string email, string unhashedPassword)
         {
+            // Arrange
+            UserLogin userLogin = new UserLogin
+            {
+                Email = email,
+                Password = unhashedPassword,
+            };
+
             // Act
-            var result = _sut.VerifyPassword(email, unhashedPassword);
+            var result = _sut.VerifyPassword(userLogin);
 
             // Assert
             return result;
         }
 
-        [TestCase("{\"Email\": \"" + _SAMPLE_EMAIL + "\", \"Password\": \"correctpass\"}", ExpectedResult = "token")]
-        [TestCase("{\"Email\": \"" + _SAMPLE_EMAIL + "\", \"Password\": \"incorrectpass\"}", ExpectedResult = null)]
-        public string TestUserAuthentication(string jsonString)
+        [TestCase(_SAMPLE_EMAIL, "correctpass", ExpectedResult = "token")]
+        [TestCase(_SAMPLE_EMAIL, "incorrectpass", ExpectedResult = null)]
+        public string TestUserAuthentication(string email, string unhashedPassword)
         {
+            // Arrange
+            UserLogin userLogin = new UserLogin
+            {
+                Email = email,
+                Password = unhashedPassword,
+            };
+
             // Act
-            var result = _sut.AuthenticateUser(jsonString);
+            var result = _sut.AuthenticateUser(userLogin);
 
             // Assert
             return result;

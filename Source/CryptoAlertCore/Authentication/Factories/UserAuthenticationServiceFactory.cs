@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CryptoAlertCore.Authentication.Services;
+﻿using CryptoAlertCore.Authentication.Services;
 using CryptoAlertCore.Authentication.Wrappers;
 using CryptoAlertCore.Configuration;
 using CryptoAlertCore.DBRepository;

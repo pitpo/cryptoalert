@@ -21,21 +21,17 @@ namespace CryptoAlertCore.Authentication
             _parser = parser;
         }
 
-        public bool VerifyPassword(string email, string unhashedPassword)
+        public bool VerifyPassword(UserLogin userLogin)
         {
-            var user = _dbRepository.GetByKey<String>("Email", email);
-            return _bCryptWrapper.Verify(unhashedPassword, user.HashedPassword);
+            var user = _dbRepository.GetByKey("Email", userLogin.Email);
+            return _bCryptWrapper.Verify(userLogin.Password, user.HashedPassword);
         }
 
-        public string AuthenticateUser(string jsonString)
+        public string AuthenticateUser(UserLogin userLogin)
         {
-            dynamic auth = _parser.Parse<dynamic>(jsonString);
-            if (auth["Email"] != null && auth["Password"] != null)
+            if (VerifyPassword(userLogin))
             {
-                if (VerifyPassword(auth["Email"].Value, auth["Password"].Value))
-                {
-                    return _jwtWrapper.CreateToken(auth["Email"].Value);
-                }
+                return _jwtWrapper.CreateToken(userLogin.Email);
             }
             return null;
         }

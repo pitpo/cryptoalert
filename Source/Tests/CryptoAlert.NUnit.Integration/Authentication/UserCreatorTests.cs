@@ -5,6 +5,7 @@ using CryptoAlertCore.DBRepository;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.Parsers;
 using Moq;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace CryptoAlert.NUnit.Authentication
@@ -43,7 +44,7 @@ namespace CryptoAlert.NUnit.Authentication
             string jsonString = "{\"Name\": \"Jan Kowalski\", \"Password\": \"password\", \"Email\": \"" + _SAMPLE_EMAIL + "\"}";
 
             // Act
-            bool result = _sut.CreateUser(jsonString);
+            bool result = _sut.InsertUserFromJsonToDb(jsonString);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -56,10 +57,42 @@ namespace CryptoAlert.NUnit.Authentication
             string jsonString = "{\"Name\": \"Jan Kowalski\", \"Password\": \"password\", \"Email\": \"existing\"}";
 
             // Act
-            bool result = _sut.CreateUser(jsonString);
+            bool result = _sut.InsertUserFromJsonToDb(jsonString);
 
             // Assert
             Assert.AreEqual(false, result);
+        }
+
+        [Test]
+        public void TestGetLoginFromJson()
+        {
+            // Arrange
+            string jsonString = "{\"Password\": \"password\", \"Email\": \"" + _SAMPLE_EMAIL + "\"}";
+            UserLogin expectedUserLogin = new UserLogin
+            {
+                Email = _SAMPLE_EMAIL,
+                Password = "password",
+            };
+
+            // Act
+            UserLogin resultingUserLogin = _sut.GetLoginFromJson(jsonString);
+
+            // Assert
+            Assert.AreEqual(expectedUserLogin.Email, resultingUserLogin.Email);
+            Assert.AreEqual(expectedUserLogin.Password, resultingUserLogin.Password);
+        }
+
+        [Test]
+        public void TestIncorrectLoginJsonThrowsException()
+        {
+            // Arrange
+            string jsonString = "{xd}";
+
+            // Act
+            TestDelegate d = () => _sut.GetLoginFromJson(jsonString);
+
+            // Assert
+            Assert.Throws<JsonReaderException>(d);
         }
     }
 }

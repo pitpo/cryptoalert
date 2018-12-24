@@ -2,8 +2,6 @@
 using JWT.Algorithms;
 using JWT.Builder;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CryptoAlertCore.Authentication.Wrappers
 {
@@ -26,7 +24,7 @@ namespace CryptoAlertCore.Authentication.Wrappers
                 .Build();
         }
 
-        public string VerifyToken(string token)
+        public string GetDecodedToken(string token)
         {
             try
             {

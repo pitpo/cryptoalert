@@ -18,7 +18,7 @@ namespace CryptoAlertCore.Authentication
             _bCryptWrapper = bCryptWrapper;
         }
 
-        public bool CreateUser(string jsonString)
+        public bool InsertUserFromJsonToDb(string jsonString)
         {
             dynamic user = _parser.Parse<dynamic>(jsonString);
             if (user["Name"] != null && user["Email"] != null && user["Password"] != null)
@@ -36,5 +36,10 @@ namespace CryptoAlertCore.Authentication
             }
             return false;
         }
+
+        public UserLogin GetLoginFromJson(string jsonString)
+        {
+            return _parser.Parse<UserLogin>(jsonString);
+        } 
     }
 }

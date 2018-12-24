@@ -19,7 +19,7 @@ namespace CryptoAlertCore.Authentication
         {
             try
             {
-                string tokenJson = _jwtWrapper.VerifyToken(token);
+                string tokenJson = _jwtWrapper.GetDecodedToken(token);
                 dynamic tokenDeserialized = _parser.Parse<dynamic>(tokenJson);
                 return (verified: true, status: tokenDeserialized["usr"].Value);
             }

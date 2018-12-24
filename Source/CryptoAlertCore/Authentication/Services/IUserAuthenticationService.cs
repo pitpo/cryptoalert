@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CryptoAlertCore.Authentication.Services
+﻿namespace CryptoAlertCore.Authentication.Services
 {
     public interface IUserAuthenticationService
     {

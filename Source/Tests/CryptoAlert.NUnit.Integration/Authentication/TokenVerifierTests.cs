@@ -23,9 +23,9 @@ namespace CryptoAlert.NUnit.Authentication
             _jwtWrapperMock = new Mock<IJWTWrapper>();
             _parser = new JsonParser();
 
-            _jwtWrapperMock.Setup(x => x.VerifyToken("kowalski")).Returns("{\"usr\": \"" + _SAMPLE_EMAIL + "\"}");
-            _jwtWrapperMock.Setup(x => x.VerifyToken("tampered")).Throws(new SignatureVerificationException(""));
-            _jwtWrapperMock.Setup(x => x.VerifyToken("outdated")).Throws(new TokenExpiredException(""));
+            _jwtWrapperMock.Setup(x => x.GetDecodedToken("kowalski")).Returns("{\"usr\": \"" + _SAMPLE_EMAIL + "\"}");
+            _jwtWrapperMock.Setup(x => x.GetDecodedToken("tampered")).Throws(new SignatureVerificationException(""));
+            _jwtWrapperMock.Setup(x => x.GetDecodedToken("outdated")).Throws(new TokenExpiredException(""));
 
             _sut = new TokenVerifier(_jwtWrapperMock.Object, _parser);
         }

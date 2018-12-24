@@ -2,6 +2,7 @@
 {
     public interface IUserCreator
     {
-        bool CreateUser(string jsonString);
+        bool InsertUserFromJsonToDb(string jsonString);
+        UserLogin GetLoginFromJson(string jsonString);
     }
 }

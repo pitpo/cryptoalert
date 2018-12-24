@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CryptoAlertCore.Authentication;
 using CryptoAlertCore.Authentication.Factories;
 using CryptoAlertCore.Authentication.Services;
 using CryptoAlertCore.CoinsInformation.Factories;
@@ -26,10 +27,11 @@ namespace CryptoAlertConsoleApp
             IUserAuthenticationServiceFactory userAuthenticationServiceFactory = new UserAuthenticationServiceFactory();
             IUserAuthenticationService userAuthenticationService = userAuthenticationServiceFactory.Create();
             Console.WriteLine("Zaczynamy!");
-            if (userAuthenticationService.UserCreator.CreateUser("{\"Name\": \"Andrzej Duda\", \"Password\": \"lubiewkotki\", \"Email\": \"prezydent@gov.pl\"}"))
+            if (userAuthenticationService.UserCreator.InsertUserFromJsonToDb("{\"Name\": \"Andrzej Duda\", \"Password\": \"lubiewkotki\", \"Email\": \"prezydent@gov.pl\"}"))
             {
                 Console.WriteLine("Dudeł ma konto");
-                string token = userAuthenticationService.UserAuthenticator.AuthenticateUser("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
+                UserLogin login = userAuthenticationService.UserCreator.GetLoginFromJson("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
+                string token = userAuthenticationService.UserAuthenticator.AuthenticateUser(login);
                 if (token != null)
                 {
                     Console.WriteLine("Dudeł istnieje i podał dobre hasło");

@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace CryptoAlertCore.Authentication
+﻿namespace CryptoAlertCore.Authentication
 {
     public interface IUserAuthenticator
     {
-        bool VerifyPassword(String email, String unhashedPassword);
-        string AuthenticateUser(String jsonString);
+        bool VerifyPassword(UserLogin userLogin);
+        string AuthenticateUser(UserLogin userLogin);
     }
 }
