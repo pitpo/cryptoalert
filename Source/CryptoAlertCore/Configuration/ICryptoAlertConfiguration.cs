@@ -4,5 +4,6 @@
     {
         string CryptoApiUrl { get;}
         string UsersDatabaseConnectionString { get; }
+        string JsonWebTokenSecret { get; }
     }
 }

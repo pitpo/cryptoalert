@@ -1,25 +1,39 @@
 ﻿using CryptoAlertCore.Authentication.Wrappers;
 using CryptoAlertCore.DBRepository;
 using CryptoAlertCore.Models;
+using CryptoAlertCore.Parsers;
 using System;
 
 namespace CryptoAlertCore.Authentication
 {
     public class UserAuthenticator : IUserAuthenticator
     {
-        private readonly IDBRepository<User> dbRepository;
-        private readonly IBCryptWrapper bCryptWrapper;
+        private readonly IDBRepository<User> _dbRepository;
+        private readonly IBCryptWrapper _bCryptWrapper;
+        private readonly IJWTWrapper _jwtWrapper;
+        private readonly IParser _parser;
 
-        public UserAuthenticator(IDBRepository<User> dbRepository, IBCryptWrapper bCryptWrapper)
+        public UserAuthenticator(IDBRepository<User> dbRepository, IParser parser, IBCryptWrapper bCryptWrapper, IJWTWrapper jwtWrapper)
         {
-            this.dbRepository = dbRepository;
-            this.bCryptWrapper = bCryptWrapper;
+            _dbRepository = dbRepository;
+            _bCryptWrapper = bCryptWrapper;
+            _jwtWrapper = jwtWrapper;
+            _parser = parser;
         }
 
-        public bool Verify(string email, string unhashedPassword)
+        public bool VerifyPassword(UserLogin userLogin)
         {
-            var user = dbRepository.GetByKey<String>("Email", email);
-            return bCryptWrapper.Verify(unhashedPassword, user.HashedPassword);
+            var user = _dbRepository.GetByKey("Email", userLogin.Email);
+            return _bCryptWrapper.Verify(userLogin.Password, user.HashedPassword);
+        }
+
+        public string AuthenticateUser(UserLogin userLogin)
+        {
+            if (VerifyPassword(userLogin))
+            {
+                return _jwtWrapper.CreateToken(userLogin.Email);
+            }
+            return null;
         }
     }
 }
