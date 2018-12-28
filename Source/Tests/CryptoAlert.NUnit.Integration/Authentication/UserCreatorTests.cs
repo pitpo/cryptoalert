@@ -8,7 +8,7 @@ using Moq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace CryptoAlert.NUnit.Authentication
+namespace CryptoAlert.NUnit.Integration.Authentication
 {
     [TestFixture]
     class UserCreatorTests

@@ -6,7 +6,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 
-namespace CryptoAlert.NUnit.Authentication
+namespace CryptoAlert.NUnit.Integration.Authentication
 {
     [TestFixture]
     class TokenVerifierTests
