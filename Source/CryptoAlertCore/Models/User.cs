@@ -2,7 +2,7 @@
 
 namespace CryptoAlertCore.Models
 {
-    public class User : DBModel
+    public class User : DbModel
     {
         public String Name { get; set; }
         public String Email { get; set; }

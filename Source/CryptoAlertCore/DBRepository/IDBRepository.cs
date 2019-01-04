@@ -1,8 +1,8 @@
 ﻿using CryptoAlertCore.Models;
 
-namespace CryptoAlertCore.DBRepository
+namespace CryptoAlertCore.DbRepository
 {
-    public interface IDBRepository<T> where T: DBModel
+    public interface IDbRepository<T> where T: DbModel
     {
         T GetById(int id);
         T GetByKey<U>(string key, U value);

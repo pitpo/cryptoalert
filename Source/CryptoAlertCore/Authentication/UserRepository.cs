@@ -1,5 +1,5 @@
 ﻿using CryptoAlertCore.Authentication.Wrappers;
-using CryptoAlertCore.DBRepository;
+using CryptoAlertCore.DbRepository;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.Parsers;
 
@@ -8,10 +8,10 @@ namespace CryptoAlertCore.Authentication
     public class UserRepository : IUserRepository
     {
         private readonly IParser _parser;
-        private readonly IDBRepository<User> _userDbRepository;
+        private readonly IDbRepository<User> _userDbRepository;
         private readonly IBCryptWrapper _bCryptWrapper;
 
-        public UserRepository(IParser parser, IDBRepository<User> userDbRepository, IBCryptWrapper bCryptWrapper)
+        public UserRepository(IParser parser, IDbRepository<User> userDbRepository, IBCryptWrapper bCryptWrapper)
         {
             _parser = parser;
             _userDbRepository = userDbRepository;
