@@ -4,14 +4,11 @@
     ViewData["Title"] = "Coin";
 }
 
-
-
 <br/>
 <div style="vertical-align: middle;" ><img src="@Model.Coin.IconUrl" alt="@Model.Coin.Name" style="width:15vw;height:15vh;"></div>
 <div style="font-size: xx-large;">@Model.Coin.Name</div> <div style="font-size: large; color: gray">(@Model.Coin.Symbol)</div>
 <br/>
 <div style="font-weight: bold; font-size: medium">Rank: @Model.Coin.Rank</div>
-
 
 Change:
 @if (@Model.Coin.Change >= 0)
@@ -25,7 +22,6 @@ else
 
 Price:
 @Model.Coin.Price $
-
 
 <br/>
 Total Supply:

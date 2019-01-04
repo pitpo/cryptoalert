@@ -7,7 +7,6 @@ namespace CryptoAlert.WebApp.Models
 {
     public class CoinViewModel : PageModel
     {
-
         public Coin Coin { get; }
 
         private readonly ICoinsInformationService _coinsInformationService;
@@ -22,6 +21,5 @@ namespace CryptoAlert.WebApp.Models
         {
             return _coinsInformationService.GetCoinAsync(coinId).Result;
         }
-
     }
 }
