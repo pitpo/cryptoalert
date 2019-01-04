@@ -4,35 +4,35 @@ namespace CryptoAlertCore.Authentication.Services
 {
     public class UserAuthenticationService : IUserAuthenticationService
     {
-        IUserAuthenticator UserAuthenticator { get; }
-        IUserCreator UserCreator { get; }
-        ITokenVerifier TokenVerifier { get; }
+        private IUserAuthenticator UserAuthenticator { get; }
+        private IUserRepository UserRepository { get; }
+        private ITokenVerifier TokenVerifier { get; }
 
-        public UserAuthenticationService(IUserAuthenticator userAuthenticator, IUserCreator userCreator, ITokenVerifier tokenVerifier)
+        public UserAuthenticationService(IUserAuthenticator userAuthenticator, IUserRepository userCreator, ITokenVerifier tokenVerifier)
         {
             UserAuthenticator = userAuthenticator;
-            UserCreator = userCreator;
+            UserRepository = userCreator;
             TokenVerifier = tokenVerifier;
         }
 
-        public User GetUserFromToken(string token)
+        public User GetUserFromToken(Token token)
         {
             (bool verified, string status) = TokenVerifier.VerifyToken(token);
             if (verified)
             {
-                return UserCreator.GetUserFromDb(status);
+                return UserRepository.GetUserFromDb(status);
             }
             return null;
         }
 
         public bool InsertUserFromJsonToDb(string jsonString)
         {
-            return UserCreator.InsertUserFromJsonToDb(jsonString);
+            return UserRepository.InsertUserFromJsonToDb(jsonString);
         }
 
-        public string LogInUserFromJson(string jsonString)
+        public Token AuthenticateUserFromJson(string jsonString)
         {
-            UserLogin userLogin = UserCreator.GetLoginFromJson(jsonString);
+            UserLogin userLogin = UserRepository.GetLoginFromJson(jsonString);
             return UserAuthenticator.AuthenticateUser(userLogin);
         }
     }

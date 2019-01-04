@@ -5,13 +5,13 @@ using CryptoAlertCore.Parsers;
 
 namespace CryptoAlertCore.Authentication
 {
-    public class UserCreator : IUserCreator
+    public class UserRepository : IUserRepository
     {
         private readonly IParser _parser;
         private readonly IDBRepository<User> _userDbRepository;
         private readonly IBCryptWrapper _bCryptWrapper;
 
-        public UserCreator(IParser parser, IDBRepository<User> userDbRepository, IBCryptWrapper bCryptWrapper)
+        public UserRepository(IParser parser, IDBRepository<User> userDbRepository, IBCryptWrapper bCryptWrapper)
         {
             _parser = parser;
             _userDbRepository = userDbRepository;

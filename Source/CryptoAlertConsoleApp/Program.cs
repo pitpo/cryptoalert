@@ -31,7 +31,7 @@ namespace CryptoAlertConsoleApp
             if (userAuthenticationService.InsertUserFromJsonToDb("{\"Name\": \"Andrzej Duda\", \"Password\": \"lubiewkotki\", \"Email\": \"prezydent@gov.pl\"}"))
             {
                 Console.WriteLine("Dudeł ma konto");
-                string token = userAuthenticationService.LogInUserFromJson("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
+                Token token = userAuthenticationService.AuthenticateUserFromJson("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
                 if (token != null)
                 {
                     Console.WriteLine("Dudeł istnieje i podał dobre hasło");

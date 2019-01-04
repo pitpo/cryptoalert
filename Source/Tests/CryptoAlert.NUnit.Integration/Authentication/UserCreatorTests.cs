@@ -19,7 +19,7 @@ namespace CryptoAlert.NUnit.Integration.Authentication
         private const String _SAMPLE_EMAIL = "jankowalski@uj.edu.pl";
         private User _user;
 
-        private UserCreator _sut;
+        private UserRepository _sut;
 
         [SetUp]
         public void SetUp()
@@ -34,7 +34,7 @@ namespace CryptoAlert.NUnit.Integration.Authentication
             _userDbRepositoryMock.Setup(x => x.Insert(It.IsAny<User>())).Returns(true);
             _bCryptWrapperMock.Setup(x => x.HashPassword(It.IsAny<string>())).Returns("hashedPassword");
 
-            _sut = new UserCreator(_parser, _userDbRepositoryMock.Object, _bCryptWrapperMock.Object);
+            _sut = new UserRepository(_parser, _userDbRepositoryMock.Object, _bCryptWrapperMock.Object);
         }
 
         [Test]

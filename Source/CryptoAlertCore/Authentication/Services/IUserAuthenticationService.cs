@@ -4,8 +4,8 @@ namespace CryptoAlertCore.Authentication.Services
 {
     public interface IUserAuthenticationService
     {
-        User GetUserFromToken(string token);
+        User GetUserFromToken(Token token);
         bool InsertUserFromJsonToDb(string jsonString);
-        string LogInUserFromJson(string jsonString);
+        Token AuthenticateUserFromJson(string jsonString);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CryptoAlertCore.Authentication
 {
-    public interface IUserCreator
+    public interface IUserRepository
     {
         bool InsertUserFromJsonToDb(string jsonString);
         UserLogin GetLoginFromJson(string jsonString);
