@@ -27,7 +27,7 @@ namespace CryptoAlertCore.Authentication
             return _bCryptWrapper.Verify(userLogin.Password, user.HashedPassword);
         }
 
-        public string AuthenticateUser(UserLogin userLogin)
+        public Token AuthenticateUser(UserLogin userLogin)
         {
             if (VerifyPassword(userLogin))
             {

@@ -1,8 +1,10 @@
-﻿namespace CryptoAlertCore.Authentication.Wrappers
+﻿using CryptoAlertCore.Models;
+
+namespace CryptoAlertCore.Authentication.Wrappers
 {
     public interface IJWTWrapper
     {
-        string CreateToken(string email);
-        string GetDecodedToken(string token);
+        Token CreateToken(string email);
+        string GetDecodedToken(Token token);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CryptoAlertCore.Authentication.Wrappers;
+using CryptoAlertCore.Models;
 using CryptoAlertCore.Parsers;
 using JWT;
 
@@ -15,7 +16,7 @@ namespace CryptoAlertCore.Authentication
             _parser = parser;
         }
 
-        public (bool verified, string status) VerifyToken(string token)
+        public (bool verified, string status) VerifyToken(Token token)
         {
             try
             {

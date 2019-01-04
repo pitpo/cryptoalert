@@ -17,9 +17,9 @@ namespace CryptoAlertCore.Authentication.Factories
             IBCryptWrapper bCryptWrapper = new BCryptWrapper();
             IJWTWrapper jwtWrapper = new JWTWrapper(configuration.JsonWebTokenSecret);
             IUserAuthenticator userAuthenticator = new UserAuthenticator(userDbRepository, parser, bCryptWrapper, jwtWrapper);
-            IUserCreator userCreator = new UserCreator(parser, userDbRepository, bCryptWrapper);
+            IUserRepository userRepository = new UserRepository(parser, userDbRepository, bCryptWrapper);
             ITokenVerifier tokenVerifier = new TokenVerifier(jwtWrapper, parser);
-            return new UserAuthenticationService(userAuthenticator, userCreator, tokenVerifier);
+            return new UserAuthenticationService(userAuthenticator, userRepository, tokenVerifier);
         }
     }
 }

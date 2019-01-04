@@ -1,4 +1,5 @@
-﻿using JWT;
+﻿using CryptoAlertCore.Models;
+using JWT;
 using JWT.Algorithms;
 using JWT.Builder;
 using System;
@@ -14,24 +15,24 @@ namespace CryptoAlertCore.Authentication.Wrappers
             _secret = secret;
         }
 
-        public string CreateToken(string email)
+        public Token CreateToken(string email)
         {
-            return new JwtBuilder()
+            return new Token(new JwtBuilder()
                 .WithAlgorithm(new HMACSHA256Algorithm())
                 .WithSecret(_secret)
                 .AddClaim("exp", DateTimeOffset.UtcNow.AddHours(24).ToUnixTimeSeconds())
                 .AddClaim("usr", email)
-                .Build();
+                .Build());
         }
 
-        public string GetDecodedToken(string token)
+        public string GetDecodedToken(Token token)
         {
             try
             {
                 return new JwtBuilder()
                     .WithSecret(_secret)
                     .MustVerifySignature()
-                    .Decode(token);
+                    .Decode(token.Content);
             }
             catch (TokenExpiredException)
             {
