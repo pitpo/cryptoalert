@@ -1,7 +1,7 @@
 ﻿using System;
 using CryptoAlertCore.Authentication;
 using CryptoAlertCore.Authentication.Wrappers;
-using CryptoAlertCore.DBRepository;
+using CryptoAlertCore.DbRepository;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.Parsers;
 using Moq;
@@ -13,7 +13,7 @@ namespace CryptoAlert.NUnit.Integration.Authentication
     [TestFixture]
     class UserCreatorTests
     {
-        private Mock<IDBRepository<User>> _userDbRepositoryMock;
+        private Mock<IDbRepository<User>> _userDbRepositoryMock;
         private Mock<IBCryptWrapper> _bCryptWrapperMock;
         private IParser _parser;
         private const String _SAMPLE_EMAIL = "jankowalski@uj.edu.pl";
@@ -25,7 +25,7 @@ namespace CryptoAlert.NUnit.Integration.Authentication
         public void SetUp()
         {
             _parser = new JsonParser();
-            _userDbRepositoryMock = new Mock<IDBRepository<User>>();
+            _userDbRepositoryMock = new Mock<IDbRepository<User>>();
             _bCryptWrapperMock = new Mock<IBCryptWrapper>();
             _user = new User();
 

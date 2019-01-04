@@ -1,7 +1,7 @@
 ﻿using CryptoAlertCore.Authentication.Services;
 using CryptoAlertCore.Authentication.Wrappers;
 using CryptoAlertCore.Configuration;
-using CryptoAlertCore.DBRepository;
+using CryptoAlertCore.DbRepository;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.Parsers;
 
@@ -12,7 +12,7 @@ namespace CryptoAlertCore.Authentication.Factories
         public IUserAuthenticationService Create()
         {
             ICryptoAlertConfiguration configuration = new CryptoAlertConfiguration();
-            IDBRepository<User> userDbRepository = new DBRepository<User>(configuration.UsersDatabaseConnectionString);
+            IDbRepository<User> userDbRepository = new DbRepository<User>(configuration.UsersDatabaseConnectionString);
             IParser parser = new JsonParser();
             IBCryptWrapper bCryptWrapper = new BCryptWrapper();
             IJWTWrapper jwtWrapper = new JWTWrapper(configuration.JsonWebTokenSecret);
