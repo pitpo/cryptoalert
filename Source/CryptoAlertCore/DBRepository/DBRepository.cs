@@ -1,5 +1,6 @@
 ﻿using CryptoAlertCore.Models;
 using LiteDB;
+using System;
 
 namespace CryptoAlertCore.DBRepository
 {
@@ -23,8 +24,16 @@ namespace CryptoAlertCore.DBRepository
             {
                 BsonValue bsonValue = new BsonValue(value);
                 if (bsonValue == null) return null;
-                return db.First<T>(Query.EQ(key, bsonValue));
+                try
+                {
+                    return db.First<T>(Query.EQ(key, bsonValue));
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
             }
+            
         }
 
         public bool Insert(T obj)
