@@ -4,6 +4,7 @@ using CryptoAlertCore.Authentication;
 using CryptoAlertCore.Authentication.Factories;
 using CryptoAlertCore.Authentication.Services;
 using CryptoAlertCore.CoinsInformation.Factories;
+using CryptoAlertCore.Models;
 
 namespace CryptoAlertConsoleApp
 {
@@ -27,21 +28,20 @@ namespace CryptoAlertConsoleApp
             IUserAuthenticationServiceFactory userAuthenticationServiceFactory = new UserAuthenticationServiceFactory();
             IUserAuthenticationService userAuthenticationService = userAuthenticationServiceFactory.Create();
             Console.WriteLine("Zaczynamy!");
-            if (userAuthenticationService.UserCreator.InsertUserFromJsonToDb("{\"Name\": \"Andrzej Duda\", \"Password\": \"lubiewkotki\", \"Email\": \"prezydent@gov.pl\"}"))
+            if (userAuthenticationService.InsertUserFromJsonToDb("{\"Name\": \"Andrzej Duda\", \"Password\": \"lubiewkotki\", \"Email\": \"prezydent@gov.pl\"}"))
             {
                 Console.WriteLine("Dudeł ma konto");
-                UserLogin login = userAuthenticationService.UserCreator.GetLoginFromJson("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
-                string token = userAuthenticationService.UserAuthenticator.AuthenticateUser(login);
+                string token = userAuthenticationService.LogInUserFromJson("{\"Email\": \"prezydent@gov.pl\", \"Password\": \"lubiewkotki\"}");
                 if (token != null)
                 {
                     Console.WriteLine("Dudeł istnieje i podał dobre hasło");
-                    (bool verified, string status) = userAuthenticationService.TokenVerifier.VerifyToken(token);
-                    if (verified)
+                    User user = userAuthenticationService.GetUserFromToken(token);
+                    if (user != null)
                     {
-                        Console.WriteLine("Tokenik się zgadza, mamy połączenie od " + status);
+                        Console.WriteLine("Tokenik się zgadza, mamy połączenie od " + user.Email);
                     } else
                     {
-                        Console.WriteLine("Coś... coś się zepsuło: " + status);
+                        Console.WriteLine("Coś... coś się zepsuło");
                     }
                 }
             }

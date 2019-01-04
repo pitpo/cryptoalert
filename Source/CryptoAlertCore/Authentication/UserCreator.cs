@@ -40,6 +40,11 @@ namespace CryptoAlertCore.Authentication
         public UserLogin GetLoginFromJson(string jsonString)
         {
             return _parser.Parse<UserLogin>(jsonString);
-        } 
+        }
+
+        public User GetUserFromDb(string email)
+        {
+            return _userDbRepository.GetByKey<string>("Email", email);
+        }
     }
 }

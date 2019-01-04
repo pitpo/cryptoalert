@@ -1,9 +1,11 @@
-﻿namespace CryptoAlertCore.Authentication.Services
+﻿using CryptoAlertCore.Models;
+
+namespace CryptoAlertCore.Authentication.Services
 {
     public interface IUserAuthenticationService
     {
-        IUserAuthenticator UserAuthenticator { get; }
-        IUserCreator UserCreator { get; }
-        ITokenVerifier TokenVerifier { get; }
+        User GetUserFromToken(string token);
+        bool InsertUserFromJsonToDb(string jsonString);
+        string LogInUserFromJson(string jsonString);
     }
 }
