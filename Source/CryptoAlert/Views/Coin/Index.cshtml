@@ -1,14 +1,36 @@
-﻿@model  CryptoAlert.WebApp.Models.CoinViewModel
+﻿@model CryptoAlert.WebApp.Models.CoinViewModel
 
 @{
     ViewData["Title"] = "Coin";
 }
 
-<h2>CoinView</h2>
 
 
-@{
+<br/>
+<div style="vertical-align: middle;" ><img src="@Model.Coin.IconUrl" alt="@Model.Coin.Name" style="width:15vw;height:15vh;"></div>
+<div style="font-size: xx-large;">@Model.Coin.Name</div> <div style="font-size: large; color: gray">(@Model.Coin.Symbol)</div>
+<br/>
+<div style="font-weight: bold; font-size: medium">Rank: @Model.Coin.Rank</div>
 
-    
-    Model.Get
+
+Change:
+@if (@Model.Coin.Change >= 0)
+{
+<div style="vertical-align: middle; color: green; font-weight: bold; font-size: large">@Model.Coin.Change%</div>
 }
+else
+{
+    <div style="vertical-align: middle; color: red; font-weight: bold; font-size: large"> @Math.Abs(@Model.Coin.Change)%</div>
+}
+
+Price:
+@Model.Coin.Price $
+
+
+<br/>
+Total Supply:
+@Model.Coin.TotalSupply
+
+<br/>
+Market Cup:
+@Model.Coin.MarketCap
