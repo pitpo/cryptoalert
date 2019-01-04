@@ -33,7 +33,7 @@ namespace CryptoAlert.NUnit.Integration.Authentication
             _userDbRepositoryMock.Setup(x => x.GetByKey<String>("Email", _SAMPLE_EMAIL)).Returns(_user);
             _bCryptWrapperMock.Setup(x => x.Verify(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
             _bCryptWrapperMock.Setup(x => x.Verify("correctpass", _user.HashedPassword)).Returns(true);
-            _jwtWrapperMock.Setup(x => x.CreateToken(_SAMPLE_EMAIL)).Returns("token");
+            _jwtWrapperMock.Setup(x => x.CreateToken(_SAMPLE_EMAIL)).Returns(new Token("token"));
 
             _sut = new UserAuthenticator(_userDbRepositoryMock.Object, _parser, _bCryptWrapperMock.Object, _jwtWrapperMock.Object);
         }
@@ -68,7 +68,12 @@ namespace CryptoAlert.NUnit.Integration.Authentication
             };
 
             // Act
-            var result = _sut.AuthenticateUser(userLogin);
+            var token = _sut.AuthenticateUser(userLogin);
+            string result = null;
+            if (token != null)
+            {
+                result = token.Content;
+            }
 
             // Assert
             return result;
