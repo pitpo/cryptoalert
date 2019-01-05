@@ -40,7 +40,22 @@ namespace CryptoAlertCore.UserFavorites.Repositories
             }
         }
 
-        public UserFavoriteCoins GetFavoriteCoinsByEmail(string userEmail)
+	    public void Override(UserFavoriteCoins userFavoriteCoins)
+	    {
+		    if (CheckIfAlreadyExists(userFavoriteCoins))
+		    {
+			    var currentUser = GetUserFavoriteCoinsByEmail(userFavoriteCoins.UserEmail);
+
+			    using (LiteRepository db = new LiteRepository(base.ConnectionString))
+			    {
+				    db.Delete<UserFavoriteCoins>(currentUser.Id);
+			    }
+			}
+
+			Insert(userFavoriteCoins);
+	    }
+
+	    public UserFavoriteCoins GetUserFavoriteCoinsByEmail(string userEmail)
         {
             return GetUserFavoritesCoinSWithEmail(userEmail);
         }

@@ -30,7 +30,11 @@ namespace CryptoAlertCore.UserFavorites.Services
 
         public IEnumerable<Coin> GetFavoritesCoins(string userEmail)
         {
-            return _userFavoritesCoinsRepository.GetFavoriteCoinsByEmail(userEmail).Coins;
+            return _userFavoritesCoinsRepository.GetUserFavoriteCoinsByEmail(userEmail).Coins;
         }
+
+	    public void RemoveCoinFromFavorites(Coin coin, string userEmail)
+	    {
+	    }
     }
 }

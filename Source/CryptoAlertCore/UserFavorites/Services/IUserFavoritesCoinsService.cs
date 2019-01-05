@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
-using CryptoAlertCore.Models;
 
 namespace CryptoAlertCore.UserFavorites.Services
 {
@@ -9,5 +8,6 @@ namespace CryptoAlertCore.UserFavorites.Services
         void AddCoinToFavorites(Coin coin, string userEmail);
         void AddCoinsToFavorites(IEnumerable<Coin> coins, string userEmail);
         IEnumerable<Coin> GetFavoritesCoins(string userEmail);
+	    void RemoveCoinFromFavorites(Coin coin, string userEmail);
     }
 }

@@ -60,14 +60,14 @@ namespace CryptoAlert.NUnit.UserFavorites.Services
 		{
 			//Arrange
 			var userFavoriteCoin = new UserFavoriteCoins(UserEmail);
-			_userFavoritesCoinsRepositoryMock.Setup(x => x.GetFavoriteCoinsByEmail(It.IsAny<string>()))
+			_userFavoritesCoinsRepositoryMock.Setup(x => x.GetUserFavoriteCoinsByEmail(It.IsAny<string>()))
 				.Returns(userFavoriteCoin);
 
 			//Act
 			_sut.GetFavoritesCoins(UserEmail);
 
 			//Assert
-			_userFavoritesCoinsRepositoryMock.Verify(x => x.GetFavoriteCoinsByEmail(It.IsAny<string>()));
+			_userFavoritesCoinsRepositoryMock.Verify(x => x.GetUserFavoriteCoinsByEmail(It.IsAny<string>()));
 		}
 
 	}
