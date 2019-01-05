@@ -1,0 +1,43 @@
+﻿@model CryptoAlert.WebApp.Models.CoinsViewModel
+
+@{
+    ViewBag.Title = "Coins";
+    Layout = "_Layout";
+}
+
+<br/>
+
+<table class="table table-striped">
+    
+    <tr>
+        <th scope="col">Icon</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Change</th>
+        <th scope="col">More info</th>
+        
+    </tr>
+
+    @foreach (var coin in Model.ListOfAllCoins)
+    {
+    <tr>
+        <td style="vertical-align:middle"><img src="@coin.IconUrl" alt="@coin.Name" style="width:5vw;height:5vh;"></td>
+        <td style="vertical-align:middle">@coin.Name</td>
+        <td style="vertical-align:middle">@coin.Price.Substring(0, 8)</td>
+
+        @if (@coin.Change >= 0)
+        {
+            <td style="vertical-align: middle; color: green; font-weight: bold">@coin.Change%</td>
+        }
+        else
+        {
+            <td style="vertical-align: middle; color: red; font-weight: bold"> @Math.Abs(@coin.Change)%</td>
+        }
+        
+        <td style="vertical-align: middle"><a href="/Coin/@coin.Id">More Info</a></td>
+
+    </tr>
+
+}
+
+</table>

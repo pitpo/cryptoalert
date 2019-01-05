@@ -1,11 +1,5 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/Source/CryptoAlert/.vs/CryptoAlert/v15/Server/sqlite3
-/Source/CryptoAlert/Tests/CryptoAlert.Nunit/bin*
-/Source/CryptoAlert/CryptoAlert/bin*
-/Source/CryptoAlert/.vs/CryptoAlert/DesignTimeBuild
-/Source/CryptoAlert/.vscode/*
-/Source/CryptoAlert/CryptoAlert/obj/*
-/Source/CryptoAlert/Tests/CryptoAlert.Nunit/obj/*
+﻿**/.vs/*
+**/.vscode/*
+**/obj/*
+**/bin/*
+/Source/CryptoAlert/db
