@@ -1,10 +1,4 @@
-﻿using CryptoAlertCore.Authentication;
-using CryptoAlertCore.Authentication.Factories;
-using CryptoAlertCore.Authentication.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CryptoAlert.WebApp.Models
 {

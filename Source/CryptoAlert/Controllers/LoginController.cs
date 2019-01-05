@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using CryptoAlert.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using System;
+using CryptoAlertCore.Models;
 
 namespace CryptoAlert.WebApp.Controllers
 {
@@ -21,23 +22,26 @@ namespace CryptoAlert.WebApp.Controllers
         [HttpPost]
         public IActionResult Index(string email, string pass)
         {
+            IUserAuthenticationService userAuthenticationService = new UserAuthenticationServiceFactory().Create();
             var userLogin = new UserLogin
             {
                 Email = email,
                 Password = pass
             };
-            IUserAuthenticationService userAuthenticationService = new UserAuthenticationServiceFactory().Create();
-            var token = userAuthenticationService.AuthenticateUserFromJson(JsonConvert.SerializeObject(userLogin));
+
+            var token = AuthenticateUser(userLogin, userAuthenticationService);
             if (token == null)
             {
                 _loginViewModel.IncorrectPassword = true;
                 return View(_loginViewModel);
             }
+
             var cookieOptions = new CookieOptions
             {
                 Expires = DateTime.Now.AddHours(24)
             };
             Response.Cookies.Append("jwt", token.Content, cookieOptions);
+
             return RedirectToAction("Index", "Coins");
         }
 
@@ -45,6 +49,11 @@ namespace CryptoAlert.WebApp.Controllers
         {
             Response.Cookies.Delete("jwt");
             return RedirectToAction("Index", "Coins");
+        }
+
+        private Token AuthenticateUser(UserLogin userLogin, IUserAuthenticationService userAuthenticationService)
+        {
+            return userAuthenticationService.AuthenticateUserFromJson(JsonConvert.SerializeObject(userLogin));
         }
     }
 }

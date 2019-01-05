@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CryptoAlert.WebApp.Controllers
 {
@@ -24,31 +22,50 @@ namespace CryptoAlert.WebApp.Controllers
         [HttpPost]
         public IActionResult Index(string name, string email, string pass)
         {
+            var (userRegister, userLogin) = ProcessUserData(name, email, pass);
             IUserAuthenticationService userAuthenticationService = new UserAuthenticationServiceFactory().Create();
-            var user = new UserRegister
-            {
-                Name = name,
-                Email = email,
-                Password = pass
-            };
-            bool status = userAuthenticationService.InsertUserFromJsonToDb(JsonConvert.SerializeObject(user));
-            if (!status)
+            
+            bool userInserted = InsertUserToDb(userRegister, userAuthenticationService);
+            if (!userInserted)
             {
                 _registerViewModel.EmailExists = true;
                 return View(_registerViewModel);
             }
-            var userLogin = new UserLogin
-            {
-                Email = email,
-                Password = pass
-            };
-            var token = userAuthenticationService.AuthenticateUserFromJson(JsonConvert.SerializeObject(userLogin));
+
+            var token = AuthenticateUser(userLogin, userAuthenticationService);
             var cookieOptions = new CookieOptions
             {
                 Expires = DateTime.Now.AddHours(24)
             };
             Response.Cookies.Append("jwt", token.Content, cookieOptions);
+
             return RedirectToAction("Index", "Coins");
+        }
+
+        private bool InsertUserToDb(UserRegister userRegister, IUserAuthenticationService userAuthenticationService)
+        {
+            return userAuthenticationService.InsertUserFromJsonToDb(JsonConvert.SerializeObject(userRegister));
+        }
+
+        private Token AuthenticateUser(UserLogin userLogin, IUserAuthenticationService userAuthenticationService)
+        {
+            return userAuthenticationService.AuthenticateUserFromJson(JsonConvert.SerializeObject(userLogin));
+        }
+
+        private (UserRegister, UserLogin) ProcessUserData(string name, string email, string pass)
+        {
+            var userRegister = new UserRegister
+            {
+                Name = name,
+                Email = email,
+                Password = pass
+            };
+            var userLogin = new UserLogin
+            {
+                Email = email,
+                Password = pass
+            };
+            return (userRegister, userLogin);
         }
     }
 }
