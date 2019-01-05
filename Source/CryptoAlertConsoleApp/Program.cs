@@ -69,11 +69,10 @@ namespace CryptoAlertConsoleApp
            var xD = favRepo.GetByKey("UserEmail", "xD@xD.pl");
             Console.WriteLine(xD.Coins.Count);
 
-            var service = new UserFavoritesCoinsCoinsService(favRepo);
+            var service = new UserFavoritesCoinsService(favRepo);
             var result = service.GetFavoritesCoins(user.Email);
             service.AddCoinToFavorites(new Coin(), user.Email);
             result = service.GetFavoritesCoins(user.Email);
-            service.AddCoinsToFavorites();
             Console.WriteLine(user.Name);
         }
 

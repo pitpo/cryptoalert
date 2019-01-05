@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.UserFavorites.Repositories;
 
 namespace CryptoAlertCore.UserFavorites.Services
 {
-    public class UserFavoritesCoinsCoinsService : IUserFavoritesCoinsService
+    public class UserFavoritesCoinsService : IUserFavoritesCoinsService
     {
         private readonly IUserFavoritesCoinsRepository _userFavoritesCoinsRepository;
 
-        public UserFavoritesCoinsCoinsService(IUserFavoritesCoinsRepository userFavoritesCoinsRepository)
+        public UserFavoritesCoinsService(IUserFavoritesCoinsRepository userFavoritesCoinsRepository)
         {
             this._userFavoritesCoinsRepository = userFavoritesCoinsRepository;
         }
@@ -26,6 +25,7 @@ namespace CryptoAlertCore.UserFavorites.Services
         {
             var userFavoritesCoins = new UserFavoriteCoins(userEmail);
             userFavoritesCoins.Coins.AddRange(coins);
+            _userFavoritesCoinsRepository.Upsert(userFavoritesCoins);
         }
 
         public IEnumerable<Coin> GetFavoritesCoins(string userEmail)
