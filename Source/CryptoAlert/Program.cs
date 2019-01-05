@@ -14,6 +14,7 @@ namespace CryptoAlert
     {
         public static void Main(string[] args)
         {
+            System.IO.Directory.CreateDirectory("db");
             CreateWebHostBuilder(args).Build().Run();
         }
 

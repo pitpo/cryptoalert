@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,11 +29,31 @@
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">CryptoAlert</a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse justify-content-between">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Coins" asp-action="Index">Coins</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @{
+                      if (HttpContextAccessor.HttpContext.Request.Cookies.ContainsKey("jwt")) 
+                      {
+                        <li><a asp-area="" asp-controller="Coins" asp-action="Index">Show favorites</a></li>
+                      }
+                    }
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                @{
+                if (HttpContextAccessor.HttpContext.Request.Cookies.ContainsKey("jwt")) {
+                        <li>
+                          <a asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                        </li>
+                } else {
+                        <li >
+                          <a asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                        </li>
+                    }
+                  }
+                  
                 </ul>
             </div>
         </div>

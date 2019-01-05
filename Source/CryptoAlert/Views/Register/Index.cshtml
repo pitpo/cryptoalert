@@ -1,4 +1,4 @@
-﻿@model CryptoAlert.WebApp.Models.LoginViewModel
+﻿@model CryptoAlert.WebApp.Models.RegisterViewModel
 
 <html>
 <style>
@@ -51,16 +51,16 @@
     <div class="login">
         <h1>Login</h1>
             @{
-                if (Model.IncorrectPassword) {
-                    <h4 class="alert alert-danger" style="text-align: center">Something went wrong.</h4>
+                if (Model.EmailExists) {
+                    <h4 class="alert alert-danger" style="text-align: center">Email is already taken.</h4>
                 }
             }
         <form method="post">
+			<input type="text" name="name" placeholder="User name" required="required" />
             <input type="email" name="email" placeholder="Email address" required="required" />
             <input type="password" name="pass" placeholder="Password" required="required" />
-            <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Create user</button>
         </form>
-        <input type="button" value="Register" class="btn btn-primary btn-block btn-large" onclick="@("window.location.href='" + @Url.Action("Index", "Register") + "'");" />
     </div>
 </div>
 </html>
