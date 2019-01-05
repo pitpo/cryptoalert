@@ -2,15 +2,15 @@
 using LiteDB;
 using System;
 
-namespace CryptoAlertCore.DBRepository
+namespace CryptoAlertCore.DbRepository
 {
-    public class DBRepository<T> : IDBRepository<T> where T: DBModel
+    public class DbRepository<T> : IDbRepository<T> where T: DbModel
     {
-        protected readonly string _connectionString;
+        protected readonly string ConnectionString;
 
-        public DBRepository(string connectionString)
+        public DbRepository(string connectionString)
         {
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
         }
 
         public T GetById(int id)
@@ -20,7 +20,7 @@ namespace CryptoAlertCore.DBRepository
 
         public T GetByKey<U>(string key, U value)
         {
-            using (LiteRepository db = new LiteRepository(_connectionString))
+            using (LiteRepository db = new LiteRepository(ConnectionString))
             {
                 BsonValue bsonValue = new BsonValue(value);
                 if (bsonValue == null) return null;
@@ -38,7 +38,7 @@ namespace CryptoAlertCore.DBRepository
 
         public bool Insert(T obj)
         {
-            using (LiteRepository db = new LiteRepository(_connectionString))
+            using (LiteRepository db = new LiteRepository(ConnectionString))
             {
                 var objectId = db.Insert<T>(obj);
                 if (objectId == null) return false;
@@ -48,7 +48,7 @@ namespace CryptoAlertCore.DBRepository
 
         public bool Update(T obj)
         {
-            using (LiteRepository db = new LiteRepository(_connectionString))
+            using (LiteRepository db = new LiteRepository(ConnectionString))
             {
                 return db.Update<T>(obj);
             }

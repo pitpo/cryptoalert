@@ -2,7 +2,7 @@
 
 namespace CryptoAlertCore.Models
 {
-    public class DBModel
+    public class DbModel
     {
         [BsonId]
         public int Id { get; set; }

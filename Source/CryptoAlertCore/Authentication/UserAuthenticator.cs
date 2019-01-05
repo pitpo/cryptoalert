@@ -1,5 +1,5 @@
 ﻿using CryptoAlertCore.Authentication.Wrappers;
-using CryptoAlertCore.DBRepository;
+using CryptoAlertCore.DbRepository;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.Parsers;
 using System;
@@ -8,12 +8,12 @@ namespace CryptoAlertCore.Authentication
 {
     public class UserAuthenticator : IUserAuthenticator
     {
-        private readonly IDBRepository<User> _dbRepository;
+        private readonly IDbRepository<User> _dbRepository;
         private readonly IBCryptWrapper _bCryptWrapper;
         private readonly IJWTWrapper _jwtWrapper;
         private readonly IParser _parser;
 
-        public UserAuthenticator(IDBRepository<User> dbRepository, IParser parser, IBCryptWrapper bCryptWrapper, IJWTWrapper jwtWrapper)
+        public UserAuthenticator(IDbRepository<User> dbRepository, IParser parser, IBCryptWrapper bCryptWrapper, IJWTWrapper jwtWrapper)
         {
             _dbRepository = dbRepository;
             _bCryptWrapper = bCryptWrapper;
@@ -24,6 +24,7 @@ namespace CryptoAlertCore.Authentication
         public bool VerifyPassword(UserLogin userLogin)
         {
             var user = _dbRepository.GetByKey("Email", userLogin.Email);
+            if (user == null) return false;
             return _bCryptWrapper.Verify(userLogin.Password, user.HashedPassword);
         }
 
