@@ -9,6 +9,8 @@ using CryptoAlertCore.CoinsInformation.Factories;
 using CryptoAlertCore.Configuration;
 using CryptoAlertCore.DbRepository;
 using CryptoAlertCore.Models;
+using CryptoAlertCore.UserFavorites.Repositories;
+using CryptoAlertCore.UserFavorites.Services;
 
 namespace CryptoAlertConsoleApp
 {
@@ -52,16 +54,27 @@ namespace CryptoAlertConsoleApp
 //            Console.WriteLine("Kończymy");
 
             var favRepo =
-                new UserFavoritesRepository(new CryptoAlertConfiguration().UserFavoritesCoinsDatabaseConnectionString);
+                new UserFavoritesCoinsRepository(new CryptoAlertConfiguration().UserFavoritesCoinsDatabaseConnectionString);
 
             var user = new User();
             user.Email = "xD@xD.pl";
             var coin = new Coin();
             coin.Id = 2;
-            var costam = new UserFavoriteCoins(user);
+            coin.Name = "CHUJE";
+            
+            var costam = new UserFavoriteCoins(user.Email);
             costam.AddCoin(coin);
-            favRepo.Insert(costam);
+            favRepo.Upsert(costam);
 
+           var xD = favRepo.GetByKey("UserEmail", "xD@xD.pl");
+            Console.WriteLine(xD.Coins.Count);
+
+            var service = new UserFavoritesCoinsCoinsService(favRepo);
+            var result = service.GetFavoritesCoins(user.Email);
+            service.AddCoinToFavorites(new Coin(), user.Email);
+            result = service.GetFavoritesCoins(user.Email);
+            service.AddCoinsToFavorites();
+            Console.WriteLine(user.Name);
         }
 
         static void Main(string[] args)

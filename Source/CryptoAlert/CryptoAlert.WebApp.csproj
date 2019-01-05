@@ -16,4 +16,10 @@
   <ItemGroup>
     <Folder Include="Pages\Coins\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\UserFavorites\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
 </Project>
