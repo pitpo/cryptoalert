@@ -4,6 +4,7 @@ using CryptoAlertCore.CoinsInformation.DTO.Coin;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Repositories;
 using CryptoAlertCore.CoinsInformation.Services;
+using CryptoAlertCore.Configuration;
 using CryptoAlertCore.Parsers;
 using FluentAssertions;
 using Moq;
@@ -17,6 +18,7 @@ namespace CryptoAlert.NUnit.CoinsInformation.Services
     {
         private Mock<IParser> _parserMock;
         private Mock<ICoinsRepository> _coinsRepositoryMock;
+		private Mock<ICryptoAlertConfiguration> _cryptoAlertConfigurationMock;
         private CoinsInformationService _sut;
 
         [SetUp]
@@ -24,7 +26,8 @@ namespace CryptoAlert.NUnit.CoinsInformation.Services
         {
             _parserMock = new Mock<IParser>();
             _coinsRepositoryMock = new Mock<ICoinsRepository>();
-            _sut = new CoinsInformationService(_coinsRepositoryMock.Object, _parserMock.Object);
+			_cryptoAlertConfigurationMock = new Mock<ICryptoAlertConfiguration>();
+            _sut = new CoinsInformationService(_coinsRepositoryMock.Object, _parserMock.Object, _cryptoAlertConfigurationMock.Object);
         }
 
         [Test]
@@ -48,6 +51,7 @@ namespace CryptoAlert.NUnit.CoinsInformation.Services
 
             _parserMock.Setup(x => x.Parse<AllCoinsRootObject>(It.IsAny<string>()))
                 .Returns(allCoinsRootObject);
+			_cryptoAlertConfigurationMock.Setup(x => x.CoinLimit).Returns(5000);
 
             //Act
             List<Coin> result = _sut.GetListOfAllCoinsAsync().Result.ToList();

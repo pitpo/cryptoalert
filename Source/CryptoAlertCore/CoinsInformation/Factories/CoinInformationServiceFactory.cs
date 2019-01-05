@@ -18,7 +18,7 @@ namespace CryptoAlertCore.CoinsInformation.Factories
             var httpClient = new HttpClientWrapper();
             var coinsInformationRepository = new CoinsRepository(urlProvider, httpClient);
 
-            return new CoinsInformationService(coinsInformationRepository, parser);
+            return new CoinsInformationService(coinsInformationRepository, parser, configuration);
         }
     }
 }

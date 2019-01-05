@@ -6,6 +6,7 @@ using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Repositories;
 using CryptoAlertCore.CoinsInformation.Services;
 using CryptoAlertCore.CoinsInformation.UrlProviders;
+using CryptoAlertCore.Configuration;
 using CryptoAlertCore.Parsers;
 using CryptoAlertCore.Wrappers;
 using FluentAssertions;
@@ -23,6 +24,7 @@ namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
         private ICoinsRepository _coinsRepository;
         private Mock<ICoinsUrlProvider> _coinsUrlProviderMock;
         private Mock<IHttpClientWrapper> _httpClientMock;
+		private Mock<ICryptoAlertConfiguration> _configurationMock;
         private CoinsInformationService _sut;
 
         [SetUp]
@@ -30,11 +32,12 @@ namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
         {
             _httpClientMock = new Mock<IHttpClientWrapper>();
             _coinsUrlProviderMock = new Mock<ICoinsUrlProvider>();
+			_configurationMock = new Mock<ICryptoAlertConfiguration>();
 
             _parser = new JsonParser();
             _coinsRepository = new CoinsRepository(_coinsUrlProviderMock.Object, _httpClientMock.Object);
 
-            _sut = new CoinsInformationService(_coinsRepository, _parser);
+            _sut = new CoinsInformationService(_coinsRepository, _parser, _configurationMock.Object);
         }
 
         [Test]
@@ -43,6 +46,7 @@ namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
             //Arrange
             var urlEndpoint = "https://RANDOMENDPOINT.RANDOM/";
 
+			_configurationMock.Setup(x => x.CoinLimit).Returns(50);
 
             _coinsUrlProviderMock.Setup(x => x.ListOfAllCoinsUrl)
 
