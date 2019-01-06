@@ -64,17 +64,23 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 		[TestCase(2)]
 		[TestCase(3)]
 		[TestCase(10)]
-		public void ItShouldNotInsertTheSameCoinToFavorites()
+		public void ItShouldNotInsertTheSameCoinToFavorites(int numberOfInserts)
 		{
 			//Arrange
 			var list = PreparedListOfCoins;
 			var oneCoin = list[0];
 
 			//Act
-			_sut.AddCoinToFavorites(oneCoin, OneUserEmail);
-			_sut.AddCoinToFavorites(oneCoin, OneUserEmail);
+			for (int i = 0; i < numberOfInserts; ++i)
+			{
+				_sut.AddCoinToFavorites(oneCoin, OneUserEmail);
+			}
 
 			//Assert
+			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), OneUserEmail)
+				.Coins;
+
+			listFromRepo.Should().HaveCount(1);
 		}
 
 		[TearDown]
