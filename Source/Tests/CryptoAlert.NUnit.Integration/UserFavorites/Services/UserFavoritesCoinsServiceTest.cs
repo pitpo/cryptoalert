@@ -67,6 +67,22 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 			PreparedListOfCoins.Should().HaveCount(10);
 		}
 
+		[TestCase(2)]
+		[TestCase(3)]
+		[TestCase(10)]
+		public void ItShouldNotInsertTheSameCoinToFavorites()
+		{
+			//Arrange
+			var list = PreparedListOfCoins;
+			var oneCoin = list[0];
+
+			//Act
+			_sut.AddCoinToFavorites(oneCoin, OneUserEmail);
+			_sut.AddCoinToFavorites(oneCoin, OneUserEmail);
+
+			//Assert
+		}
+
 		[TearDown]
 		public void TearDown()
 		{
