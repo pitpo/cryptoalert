@@ -6,7 +6,7 @@ namespace CryptoAlertCore.DbRepository
     {
         T GetById(int id);
         T GetByKey<U>(string key, U value);
-        bool Insert(T userFavoriteCoins);
+        bool Insert(T obj);
         bool Update(T obj);
     }
 }

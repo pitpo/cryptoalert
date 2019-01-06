@@ -36,11 +36,11 @@ namespace CryptoAlertCore.DbRepository
             
         }
 
-        public virtual bool Insert(T userFavoriteCoins)
+        public virtual bool Insert(T obj)
         {
             using (LiteRepository db = new LiteRepository(ConnectionString))
             {
-                var objectId = db.Insert<T>(userFavoriteCoins);
+                var objectId = db.Insert<T>(obj);
                 if (objectId == null) return false;
                 return true;
             }
