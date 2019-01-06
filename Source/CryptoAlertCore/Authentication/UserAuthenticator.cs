@@ -24,6 +24,7 @@ namespace CryptoAlertCore.Authentication
         public bool VerifyPassword(UserLogin userLogin)
         {
             var user = _dbRepository.GetByKey("Email", userLogin.Email);
+            if (user == null) return false;
             return _bCryptWrapper.Verify(userLogin.Password, user.HashedPassword);
         }
 
