@@ -118,7 +118,7 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 		{
 			//Act
 			_sut.AddCoinToFavorites(PreparedListOfCoins[0], FirstUserEmail);
-			
+
 			//Assert
 			_sut.GetFavoritesCoins(SecondUserEmail).Should().BeEmpty();
 		}
