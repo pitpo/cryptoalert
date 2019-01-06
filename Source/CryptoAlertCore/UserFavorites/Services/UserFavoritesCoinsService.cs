@@ -31,6 +31,10 @@ namespace CryptoAlertCore.UserFavorites.Services
 
         public IEnumerable<Coin> GetFavoritesCoins(string userEmail)
         {
+	        if (_userFavoritesCoinsRepository.GetUserFavoriteCoinsByEmail(userEmail) == null)
+	        {
+				return new List<Coin>();
+	        }
             return _userFavoritesCoinsRepository.GetUserFavoriteCoinsByEmail(userEmail).Coins;
         }
 

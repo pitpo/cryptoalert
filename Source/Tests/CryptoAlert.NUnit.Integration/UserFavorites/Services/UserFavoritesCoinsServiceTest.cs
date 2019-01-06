@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.UserFavorites.Repositories;
@@ -12,12 +13,11 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 	[TestFixture]
 	public class UserFavoritesCoinsServiceTest
 	{
-
 		private const string DbConnectionString = "fav.db";
-		private const string OneUserEmail = "user@one.com";
+		private const string FirstUserEmail = "user@one.com";
+		private const string SecondUserEmail = "user@two.com";
 		private UserFavoritesCoinsRepository _userFavoritesCoinsRepository;
 		private UserFavoritesCoinsService _sut;
-
 
 
 		[SetUp]
@@ -28,7 +28,6 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 			_sut = new UserFavoritesCoinsService(_userFavoritesCoinsRepository);
 		}
 
-
 		[Test]
 		public void ShouldInsertOneCoinProperly()
 		{
@@ -36,10 +35,10 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 			var list = PreparedListOfCoins;
 
 			//Act
-			_sut.AddCoinToFavorites(list[0], OneUserEmail);
+			_sut.AddCoinToFavorites(list[0], FirstUserEmail);
 
 			//Assert
-			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), OneUserEmail)
+			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), FirstUserEmail)
 				.Coins;
 
 			listFromRepo.Should().HaveCount(1);
@@ -52,10 +51,10 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 			var list = PreparedListOfCoins;
 
 			//Act
-			_sut.AddCoinsToFavorites(list, OneUserEmail);
+			_sut.AddCoinsToFavorites(list, FirstUserEmail);
 
 			//Assert
-			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), OneUserEmail)
+			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), FirstUserEmail)
 				.Coins;
 
 			listFromRepo.Should().HaveCount(list.Count);
@@ -73,14 +72,55 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 			//Act
 			for (int i = 0; i < numberOfInserts; ++i)
 			{
-				_sut.AddCoinToFavorites(oneCoin, OneUserEmail);
+				_sut.AddCoinToFavorites(oneCoin, FirstUserEmail);
 			}
 
 			//Assert
-			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), OneUserEmail)
+			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), FirstUserEmail)
 				.Coins;
 
 			listFromRepo.Should().HaveCount(1);
+		}
+
+		[TestCase(1)]
+		[TestCase(2)]
+		[TestCase(7)]
+		public void ItShouldRemoveOneCoinProperly(int numberOfRemoves)
+		{
+			//Arrange
+			var list = PreparedListOfCoins;
+			_sut.AddCoinsToFavorites(list, FirstUserEmail);
+
+			//Act
+			for (int i = 0; i < numberOfRemoves; i++)
+			{
+				_sut.RemoveCoinFromFavorites(list[0], FirstUserEmail);
+			}
+
+			//Assert
+			var listFromRepo = _userFavoritesCoinsRepository.GetByKey(nameof(UserFavoriteCoins.UserEmail), FirstUserEmail)
+				.Coins;
+			listFromRepo.Should().HaveCount(2);
+
+			_sut.GetFavoritesCoins(FirstUserEmail).Should().HaveCount(2);
+			var listOfId = _sut.GetFavoritesCoins(FirstUserEmail).Select(x => x.Id).ToList();
+			listOfId.Should().HaveCount(list.Count - 1);
+			listOfId.Should().NotContain(list[0].Id);
+
+			for (int i = 1; i < list.Count; i++)
+			{
+				listOfId.Should().Contain(list[i].Id);
+			}
+		}
+
+		[Test]
+		public void ItShouldNotAddCoinsToFavoritesForAnotherUser()
+		{
+			//Act
+			_sut.AddCoinToFavorites(PreparedListOfCoins[0], FirstUserEmail);
+			
+			//Assert
+			_sut.GetFavoritesCoins(SecondUserEmail).Should().BeEmpty();
 		}
 
 		[TearDown]

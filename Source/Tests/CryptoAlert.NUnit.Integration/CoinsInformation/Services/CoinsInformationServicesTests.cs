@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
@@ -9,7 +8,6 @@ using CryptoAlertCore.CoinsInformation.UrlProviders;
 using CryptoAlertCore.Parsers;
 using CryptoAlertCore.Wrappers;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Resources;
 using Moq;
 using NUnit.Framework;
 
