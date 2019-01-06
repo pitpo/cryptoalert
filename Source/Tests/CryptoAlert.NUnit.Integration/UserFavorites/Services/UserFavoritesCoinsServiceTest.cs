@@ -61,6 +61,12 @@ namespace CryptoAlert.NUnit.Integration.UserFavorites.Services
 			listFromRepo.Should().HaveCount(list.Count);
 		}
 
+		[Test]
+		public void FailingTest()
+		{
+			PreparedListOfCoins.Should().HaveCount(10);
+		}
+
 		[TearDown]
 		public void TearDown()
 		{
