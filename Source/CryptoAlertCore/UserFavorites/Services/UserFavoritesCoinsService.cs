@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.UserFavorites.Repositories;
@@ -33,8 +34,14 @@ namespace CryptoAlertCore.UserFavorites.Services
             return _userFavoritesCoinsRepository.GetUserFavoriteCoinsByEmail(userEmail).Coins;
         }
 
-	    public void RemoveCoinFromFavorites(Coin coin, string userEmail)
+	    public void RemoveCoinFromFavorites(Coin coinToRemove, string userEmail)
 	    {
+		    var favoritesCoins = GetFavoritesCoins(userEmail).ToList();
+		    favoritesCoins.RemoveAll(coin => coin.Id == coinToRemove.Id);
+
+		    var userFavoritesCoins = new UserFavoriteCoins(userEmail) {Coins = favoritesCoins};
+
+		    _userFavoritesCoinsRepository.Override(userFavoritesCoins);
 	    }
     }
 }

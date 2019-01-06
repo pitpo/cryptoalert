@@ -1,4 +1,7 @@
-﻿using CryptoAlertCore.DbRepository;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CryptoAlertCore.CoinsInformation.DTO.Coins;
+using CryptoAlertCore.DbRepository;
 using CryptoAlertCore.Models;
 using LiteDB;
 
@@ -29,9 +32,10 @@ namespace CryptoAlertCore.UserFavorites.Repositories
             if (CheckIfAlreadyExists(userFavoriteCoins))
             {
                 var currentUser = GetUserFavoritesCoinSWithEmail(userFavoriteCoins.UserEmail);
-                userFavoriteCoins.Id = currentUser.Id; 
+                userFavoriteCoins.Id = currentUser.Id;
 
-                userFavoriteCoins.Coins.AddRange(currentUser.Coins);
+	            userFavoriteCoins.Coins.AddRange(currentUser.Coins);
+	            userFavoriteCoins.Coins = RemoveDuplicates(userFavoriteCoins.Coins).ToList();
             }
 
             using (LiteRepository db = new LiteRepository(base.ConnectionString))
@@ -69,5 +73,8 @@ namespace CryptoAlertCore.UserFavorites.Repositories
         {
             return base.GetByKey(nameof(UserFavoriteCoins.UserEmail), userEmail);
         }
+
+	    private IEnumerable<Coin> RemoveDuplicates(IEnumerable<Coin> coins) => coins.GroupBy(coin => coin.Id)
+		    .Select(group => @group.First());
     }
 }
