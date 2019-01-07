@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Factories;
@@ -22,30 +23,37 @@ namespace CryptoAlertConsoleApp
             Console.WriteLine(result);
         }
 
-        public static void Test()
-        {
-            var favRepo =
-                new UserFavoritesCoinsRepository(new CryptoAlertConfiguration().UserFavoritesCoinsDatabaseConnectionString);
+	    public static void Test()
+	    {
+		    var favRepo =
+			    new UserFavoritesCoinsRepository(new CryptoAlertConfiguration()
+				    .UserFavoritesCoinsDatabaseConnectionString);
 
-			var favoritesService = new UserFavoritesCoinsService(favRepo);
+		    var favoritesService = new UserFavoritesCoinsService(favRepo);
 
-	        var userEmailOne = "user@one.pl";
-	        var userEmailTwo = "user@two.pl";
+		    var userEmailOne = "user@one.pl";
+		    var userEmailTwo = "user@two.pl";
 
-	        var btc = new Coin {Name = "BTC", Id = 1};
-	        var eth = new Coin {Name = "Eth", Id = 2};
+		    var btc = new Coin {Name = "BTC", Id = 1};
+		    var eth = new Coin {Name = "Eth", Id = 2};
 
-			favoritesService.AddCoinToFavorites(btc, userEmailOne);
-			favoritesService.AddCoinToFavorites(eth, userEmailOne);
+		    favoritesService.AddCoinToFavorites(btc, userEmailOne);
+		    favoritesService.AddCoinToFavorites(eth, userEmailOne);
 
-			favoritesService.AddCoinToFavorites(eth, userEmailTwo);
+		    favoritesService.AddCoinToFavorites(eth, userEmailTwo);
 
-	        var one = favoritesService.GetFavoritesCoins(userEmailOne);
-	        var two = favoritesService.GetFavoritesCoins(userEmailTwo);
+		    var one = favoritesService.GetFavoritesCoins(userEmailOne);
+		    var two = favoritesService.GetFavoritesCoins(userEmailTwo);
 
-        }
 
-        static void Main(string[] args)
+		    var service = new CoinInformationServiceFactory().Create();
+		    List<int> list = new List<int>() {1, 2, 3, 4, 5};
+
+		    var result = service.GetListOfGivenCoinsIds(list);
+		    Console.WriteLine(result);
+
+	    }
+	    static void Main(string[] args)
         {
             Test();
             //Start().Wait();

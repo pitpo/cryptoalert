@@ -34,5 +34,17 @@ namespace CryptoAlertCore.CoinsInformation.Services
 
             return oneCoinRootObject.Data.Coin;
         }
-    }
+
+		public IEnumerable<Coin> GetListOfGivenCoinsIds(IEnumerable<int> coinIds)
+		{
+			var result = new List<Coin>();
+
+			coinIds.AsParallel().ForAll(coinId =>
+			{
+				result.Add(GetCoinAsync(coinId).Result);
+			});
+
+			return result;
+		}
+	}
 }

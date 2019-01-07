@@ -47,5 +47,11 @@ namespace CryptoAlertCore.UserFavorites.Services
 
 			_userFavoritesCoinsRepository.Override(userFavoritesCoins);
 		}
+
+		public bool CheckIfCoinAlreadyInFavorites(Coin coin, string userEmail)
+		{
+			var favoriteCoins = GetFavoritesCoins(userEmail).Select(coinToFind => coinToFind.Id);
+			return favoriteCoins.Contains(coin.Id);
+		}
 	}
 }
