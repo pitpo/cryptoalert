@@ -58,15 +58,14 @@ namespace CryptoAlertCore.UserFavorites.Repositories
 
 			Insert(userFavoriteCoins);
 	    }
+	    public UserFavoriteCoins GetUserFavoriteCoinsByEmail(string userEmail)
+	    {
+		    return base.GetByKey(nameof(UserFavoriteCoins.UserEmail), userEmail);
+	    }
 
-        private bool CheckIfAlreadyExists(UserFavoriteCoins obj)
+		private bool CheckIfAlreadyExists(UserFavoriteCoins obj)
         {
             return base.GetByKey(nameof(UserFavoriteCoins.UserEmail), obj.UserEmail) != null;
-        }
-
-	    public UserFavoriteCoins GetUserFavoriteCoinsByEmail(string userEmail)
-        {
-            return base.GetByKey(nameof(UserFavoriteCoins.UserEmail), userEmail);
         }
 
 	    private IEnumerable<Coin> RemoveDuplicates(IEnumerable<Coin> coins) => coins.GroupBy(coin => coin.Id)

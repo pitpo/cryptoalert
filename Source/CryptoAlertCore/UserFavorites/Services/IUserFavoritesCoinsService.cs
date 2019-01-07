@@ -9,5 +9,6 @@ namespace CryptoAlertCore.UserFavorites.Services
 		void AddCoinsToFavorites(IEnumerable<Coin> coins, string userEmail);
 		IEnumerable<Coin> GetFavoritesCoins(string userEmail);
 		void RemoveCoinFromFavorites(Coin coinToRemove, string userEmail);
+		bool CheckIfCoinAlreadyInFavorites(Coin coin, string userEmail);
 	}
 }
