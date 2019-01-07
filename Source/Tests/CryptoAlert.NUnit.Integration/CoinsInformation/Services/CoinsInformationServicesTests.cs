@@ -5,6 +5,7 @@ using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Repositories;
 using CryptoAlertCore.CoinsInformation.Services;
 using CryptoAlertCore.CoinsInformation.UrlProviders;
+using CryptoAlertCore.Configuration;
 using CryptoAlertCore.Parsers;
 using CryptoAlertCore.Wrappers;
 using FluentAssertions;
@@ -14,26 +15,28 @@ using NUnit.Framework;
 namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
 {
 #pragma warning disable AV1706 // Identifier contains an abbreviation or is too short
-	[TestFixture]
-	public class CoinsInformationServicesTests
-	{
-		private IParser _parser;
-		private ICoinsRepository _coinsRepository;
-		private Mock<ICoinsUrlProvider> _coinsUrlProviderMock;
-		private Mock<IHttpClientWrapper> _httpClientMock;
-		private CoinsInformationService _sut;
+    [TestFixture]
+    public class CoinsInformationServicesTests
+    {
+        private IParser _parser;
+        private ICoinsRepository _coinsRepository;
+        private Mock<ICoinsUrlProvider> _coinsUrlProviderMock;
+        private Mock<IHttpClientWrapper> _httpClientMock;
+		private Mock<ICryptoAlertConfiguration> _configurationMock;
+        private CoinsInformationService _sut;
 
-		[SetUp]
-		public void SetUp()
-		{
-			_httpClientMock = new Mock<IHttpClientWrapper>();
-			_coinsUrlProviderMock = new Mock<ICoinsUrlProvider>();
+        [SetUp]
+        public void SetUp()
+        {
+            _httpClientMock = new Mock<IHttpClientWrapper>();
+            _coinsUrlProviderMock = new Mock<ICoinsUrlProvider>();
+			_configurationMock = new Mock<ICryptoAlertConfiguration>();
 
 			_parser = new JsonParser();
 			_coinsRepository = new CoinsRepository(_coinsUrlProviderMock.Object, _httpClientMock.Object);
 
-			_sut = new CoinsInformationService(_coinsRepository, _parser);
-		}
+            _sut = new CoinsInformationService(_coinsRepository, _parser, _configurationMock.Object);
+        }
 
 		[Test]
 		[Ignore("Failing in azure pipelines: System.AggregateException")]
@@ -42,6 +45,7 @@ namespace CryptoAlert.NUnit.Integration.CoinsInformation.Services
 			//Arrange
 			var urlEndpoint = "https://RANDOMENDPOINT.RANDOM/";
 
+			_configurationMock.Setup(x => x.CoinLimit).Returns(50);
 
 			_coinsUrlProviderMock.Setup(x => x.ListOfAllCoinsUrl)
 

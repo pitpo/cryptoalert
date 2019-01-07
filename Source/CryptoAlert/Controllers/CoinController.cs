@@ -10,7 +10,12 @@ namespace CryptoAlert.WebApp.Controllers
         public IActionResult Index(int coinId)
         {
             var coinViewModel = new CoinViewModel(coinId);
-            return View(coinViewModel);
+			if (coinViewModel.CoinExists(coinId))
+			{
+				coinViewModel.SetCoinInformation(coinId);
+				return View(coinViewModel);
+			}
+			return RedirectToAction("Error", "Home");
         }
     }
 }
