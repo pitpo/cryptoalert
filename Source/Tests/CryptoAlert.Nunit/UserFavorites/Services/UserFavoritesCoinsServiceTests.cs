@@ -3,6 +3,7 @@ using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.Models;
 using CryptoAlertCore.UserFavorites.Repositories;
 using CryptoAlertCore.UserFavorites.Services;
+using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
@@ -69,6 +70,21 @@ namespace CryptoAlert.NUnit.UserFavorites.Services
 			//Assert
 			_userFavoritesCoinsRepositoryMock.Verify(x => x.GetUserFavoriteCoinsByEmail(It.IsAny<string>()));
 		}
+
+		[Test]
+		public void ItShouldReturnFalseWhenCoinDoesNotExistsInFavorites()
+		{
+			//Arrange
+			_userFavoritesCoinsRepositoryMock.Setup(x => x.GetUserFavoriteCoinsByEmail(UserEmail))
+				.Returns(new UserFavoriteCoins(){Coins = new List<Coin>()});
+			
+			//Act
+			var result = _sut.CheckIfCoinAlreadyInFavorites(_coin, UserEmail);
+
+			//Assert
+			result.Should().Be(false);
+		}
+
 
 	}
 }
