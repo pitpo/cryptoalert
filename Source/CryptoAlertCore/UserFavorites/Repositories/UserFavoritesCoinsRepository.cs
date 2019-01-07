@@ -31,7 +31,7 @@ namespace CryptoAlertCore.UserFavorites.Repositories
         {
             if (CheckIfAlreadyExists(userFavoriteCoins))
             {
-                var currentUser = GetUserFavoritesCoinSWithEmail(userFavoriteCoins.UserEmail);
+                var currentUser = GetUserFavoriteCoinsByEmail(userFavoriteCoins.UserEmail);
                 userFavoriteCoins.Id = currentUser.Id;
 
 	            userFavoriteCoins.Coins.AddRange(currentUser.Coins);
@@ -59,17 +59,12 @@ namespace CryptoAlertCore.UserFavorites.Repositories
 			Insert(userFavoriteCoins);
 	    }
 
-	    public UserFavoriteCoins GetUserFavoriteCoinsByEmail(string userEmail)
-        {
-            return GetUserFavoritesCoinSWithEmail(userEmail);
-        }
-
         private bool CheckIfAlreadyExists(UserFavoriteCoins obj)
         {
             return base.GetByKey(nameof(UserFavoriteCoins.UserEmail), obj.UserEmail) != null;
         }
 
-        private UserFavoriteCoins GetUserFavoritesCoinSWithEmail(string userEmail)
+	    public UserFavoriteCoins GetUserFavoriteCoinsByEmail(string userEmail)
         {
             return base.GetByKey(nameof(UserFavoriteCoins.UserEmail), userEmail);
         }
