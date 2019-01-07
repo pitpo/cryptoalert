@@ -13,7 +13,7 @@ namespace CryptoAlert.WebApp.Models
 {
     public class FavoriteCoinsViewModel : PageModel
     {
-		private IUserFavoritesCoinsService _userFavoritesCoinsService;
+		private readonly IUserFavoritesCoinsService _userFavoritesCoinsService;
 		private readonly IUserAuthenticationService _userAuthenticationService;
 		private string _userEmail;
 
@@ -32,14 +32,5 @@ namespace CryptoAlert.WebApp.Models
 		}
 
 		public List<Coin> ListOfAllFavoriteCoins => _userFavoritesCoinsService.GetFavoritesCoins(_userEmail).ToList();
-
-		public void OnGet()
-		{
-			IUserFavoritesCoinsServiceFactory userFavoritesCoinsServiceFactory
-				= new UserFavoritesCoinsServiceFactory();
-			_userFavoritesCoinsService = userFavoritesCoinsServiceFactory.Create();
-			_userEmail = new HttpContextAccessor().HttpContext.Request.Cookies["jwt"];
-		}
-
 	}
 }
