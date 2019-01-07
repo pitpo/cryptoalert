@@ -6,5 +6,6 @@
         string UsersDatabaseConnectionString { get; }
         string JsonWebTokenSecret { get; }
         string UserFavoritesCoinsDatabaseConnectionString { get; }
+		int CoinLimit { get; }
     }
 }
