@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CryptoAlertCore.CoinsInformation.DTO.Coin;
 using CryptoAlertCore.CoinsInformation.DTO.Coins;
 using CryptoAlertCore.CoinsInformation.Repositories;
+using CryptoAlertCore.Configuration;
 using CryptoAlertCore.Parsers;
 
 namespace CryptoAlertCore.CoinsInformation.Services
@@ -12,11 +13,13 @@ namespace CryptoAlertCore.CoinsInformation.Services
     {
         private readonly ICoinsRepository _coinsRepository;
         private readonly IParser _parser;
+		private readonly ICryptoAlertConfiguration _cryptoAlertConfiguration;
 
-        public CoinsInformationService(ICoinsRepository coinsRepository, IParser parser)
+        public CoinsInformationService(ICoinsRepository coinsRepository, IParser parser, ICryptoAlertConfiguration cryptoAlertConfiguration)
         {
             _coinsRepository = coinsRepository;
             _parser = parser;
+			_cryptoAlertConfiguration = cryptoAlertConfiguration;
         }
 
         public async Task <IEnumerable<Coin>> GetListOfAllCoinsAsync()
@@ -24,7 +27,7 @@ namespace CryptoAlertCore.CoinsInformation.Services
             var content = await _coinsRepository.GetAllCoinsJsonObjectAsync();
             var allCoinsRootObject =  _parser.Parse<AllCoinsRootObject>(content);
 
-            return allCoinsRootObject.Data.Coins.ToList();
+            return allCoinsRootObject.Data.Coins.Take(_cryptoAlertConfiguration.CoinLimit).ToList();
         }
 
         public async Task<Coin> GetCoinAsync(int coinId)
@@ -34,5 +37,17 @@ namespace CryptoAlertCore.CoinsInformation.Services
 
             return oneCoinRootObject.Data.Coin;
         }
-    }
+
+		public IEnumerable<Coin> GetListOfGivenCoinsIds(IEnumerable<int> coinIds)
+		{
+			var result = new List<Coin>();
+
+			coinIds.AsParallel().ForAll(coinId =>
+			{
+				result.Add(GetCoinAsync(coinId).Result);
+			});
+
+			return result;
+		}
+	}
 }

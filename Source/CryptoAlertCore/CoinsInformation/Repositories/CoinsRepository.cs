@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CryptoAlertCore.CoinsInformation.UrlProviders;
 using CryptoAlertCore.Wrappers;
 

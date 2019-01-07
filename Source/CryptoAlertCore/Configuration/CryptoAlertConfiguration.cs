@@ -7,8 +7,8 @@ namespace CryptoAlertCore.Configuration
         public string CryptoApiUrl => "https://api.coinranking.com/v1";
         public string UsersDatabaseConnectionString => ConfigurationManager.ConnectionStrings["UsersDatabase"].ConnectionString;
         public string JsonWebTokenSecret => ConfigurationManager.AppSettings["JWTSecret"];
-
         public string UserFavoritesCoinsDatabaseConnectionString =>
-            @"Filename=favorites.db";
+			ConfigurationManager.ConnectionStrings["UserFavoritesDatabase"].ConnectionString;
+		public int CoinLimit => int.Parse(ConfigurationManager.AppSettings["CoinLimit"]);
     }
 }

@@ -28,5 +28,26 @@ Total Supply:
 @Model.Coin.TotalSupply
 
 <br/>
-Market Cup:
+Market Cap:
 @Model.Coin.MarketCap
+
+@{
+	if (Model.IsLoggedIn) 
+	{
+		<br/>
+		if (Model.IsInFavorites) 
+		{
+			var link = "/Coin/RemoveFavorite/" + Model.Coin.Id;
+			<form action="@link" method="post">
+				<input type="submit" value="Remove from favorites"/>
+			</form>
+		}
+		else 
+		{
+			var link = "/Coin/AddFavorite/" + Model.Coin.Id;
+			<form action="@link" method="post">
+				<input type="submit" value="Add to Favorites"/>
+			</form>
+		}
+	}
+}
