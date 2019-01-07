@@ -46,7 +46,10 @@ namespace CryptoAlert.WebApp.Models
 		public void SetCoinInformation(int coinId)
 		{
 			Coin = GetCoinInformation(coinId);
-			IsInFavorites = _userFavoritesCoinsService.CheckIfCoinAlreadyInFavorites(Coin, GetLoggedInUserEmail());
+			if (IsLoggedIn)
+			{
+				IsInFavorites = _userFavoritesCoinsService.CheckIfCoinAlreadyInFavorites(Coin, GetLoggedInUserEmail());
+			}
 		}
 
 		public void AddFavorite()
