@@ -26,6 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\UserFavorites\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
 </Project>

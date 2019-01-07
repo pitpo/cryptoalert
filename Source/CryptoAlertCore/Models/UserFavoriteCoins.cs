@@ -6,13 +6,18 @@ namespace CryptoAlertCore.Models
 {
     public class UserFavoriteCoins : DbModel
     {
-        public List<Coin> Coins { get; }
-        public string UserEmail { get; }
+        public List<Coin> Coins { get; set; }
+        public string UserEmail { get; set; }
 
-        public UserFavoriteCoins(User user)
+        public UserFavoriteCoins(string userEmail)
         {
-            UserEmail = user.Email;
+            UserEmail = userEmail;
             Coins = new List<Coin>();
+        }
+
+        public UserFavoriteCoins()
+        {
+
         }
 
         public void AddCoin(Coin coin)
