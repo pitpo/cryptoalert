@@ -37,7 +37,7 @@
                     @{
                       if (HttpContextAccessor.HttpContext.Request.Cookies.ContainsKey("jwt")) 
                       {
-                        <li><a asp-area="" asp-controller="Coins" asp-action="Index">Show favorites</a></li>
+                        <li><a asp-area="" asp-controller="FavoriteCoins" asp-action="Index">Show favorites</a></li>
                       }
                     }
               </ul>
