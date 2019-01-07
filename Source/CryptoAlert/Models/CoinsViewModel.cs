@@ -21,12 +21,5 @@ namespace CryptoAlert.WebApp.Models
         }
 
         public List<Coin> ListOfAllCoins => _coinsInformationService.GetListOfAllCoinsAsync().Result.ToList();
-
-        public void OnGet()
-        {
-            ICoinInformationServiceFactory coinInformationServiceFactory
-                = new CoinInformationServiceFactory();
-            _coinsInformationService = coinInformationServiceFactory.Create();
-        }
     }
 }

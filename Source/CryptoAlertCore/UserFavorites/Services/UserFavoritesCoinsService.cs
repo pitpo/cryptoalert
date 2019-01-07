@@ -50,7 +50,7 @@ namespace CryptoAlertCore.UserFavorites.Services
 
 		public bool CheckIfCoinAlreadyInFavorites(Coin coin, string userEmail)
 		{
-			var favoriteCoins = GetFavoritesCoins(userEmail).Select(coinToFind => coinToFind.Id);
+			var favoriteCoins = GetFavoritesCoins(userEmail).Where(coinToFind => coinToFind != null).Select(coinToFind => coinToFind.Id);
 			return favoriteCoins.Contains(coin.Id);
 		}
 	}

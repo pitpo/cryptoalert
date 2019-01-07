@@ -37,11 +37,17 @@ Market Cap:
 		<br/>
 		if (Model.IsInFavorites) 
 		{
-			<input type="button" value="Remove from favorites" onclick="@("window.location.href='" + @Url.Action("RemoveFavorite", "Coin") + "'");" />
+			var link = "/Coin/RemoveFavorite/" + Model.Coin.Id;
+			<form action="@link" method="post">
+				<input type="submit" value="Remove from favorites"/>
+			</form>
 		}
 		else 
 		{
-			<input type="button" value="Add to favorites" onclick="@("window.location.href='" + @Url.Action("AddFavorite", "Coin") + "'");" />
+			var link = "/Coin/AddFavorite/" + Model.Coin.Id;
+			<form action="@link" method="post">
+				<input type="submit" value="Add to Favorites"/>
+			</form>
 		}
 	}
 }
